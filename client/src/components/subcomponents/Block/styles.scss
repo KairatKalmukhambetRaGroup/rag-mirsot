@@ -1,0 +1,141 @@
+.block{
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+.cards{
+    display: flex;
+    gap: 32px;
+    .card{
+        max-width: 530px;
+        max-height: 296px;
+        padding: 40px;
+        border-radius: 32px;
+        background: rgba($color: #1C6BDB, $alpha: .15);
+        .card-title{
+            color: #FFCB46;
+            margin-bottom: 24px;
+        }
+        .card-text{
+            color: #D6D9DD;
+        }
+        &:nth-of-type(2){
+            .card-title{
+                color: #FFFFFF;
+            }
+            .card-text{
+                color: #1C6BDB
+            }
+        }
+    }
+}
+.h-slider{
+    display: flex;
+    flex-direction: row;
+    overflow-x:auto;
+    max-width: 100%;
+    width: 100%;
+}
+
+.image{
+
+}
+
+.staff-group{
+    display: flex;
+    flex-direction: column;
+    gap: 224px;
+    .staff-card{
+        display: flex;
+        gap: 144px;
+        .image{
+            overflow: visible;
+            max-width: 320px;
+            max-height: 320px;
+            min-width: 320px;
+            min-height: 320px;
+            width: 320px;
+            height: 320px;
+            position: relative;
+            &::after{
+                position: absolute;
+                top: -72px;
+                right: -72px;
+                content: '';
+                display: flex;
+                height: 464px;
+                width: 1000px;
+                background-color: #1C6BDB;
+                opacity: 0.15;
+                border-radius: 0px 96px 96px 0px;
+            }
+            img.staff-image{
+                max-width: 320px;
+                max-height: 320px;
+                min-width: 320px;
+                min-height: 320px;
+                width: 320px;
+                height: 320px;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        &:nth-of-type(2){
+            flex-flow: row-reverse;
+            .image{
+                &::after{
+                    top: -72px;
+                    left: -72px;
+                    content: '';
+                    display: flex;
+                    height: 464px;
+                    width: 1000px;
+                    background-color: #1C6BDB;
+                    opacity: 0.15;
+                    border-radius: 96px 0 0 96px;
+                }
+                img.staff-image{
+                    max-width: 320px;
+                    max-height: 320px;
+                    min-width: 320px;
+                    min-height: 320px;
+                    width: 320px;
+                    height: 320px;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            } 
+        }
+        .staff-body{
+            .staff-title{
+                padding-bottom: 16px;
+            }
+            .staff-subtitle{
+                padding-bottom: 8px;
+            }
+            .staff-text{
+                padding-bottom: 16px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .cards{     
+        .card{
+            min-width: 520px;
+        }
+    }
+    .block{
+        &>div{
+            padding: auto;
+            margin: 80px auto;
+            max-width: 1120px;
+            width: 1120px;
+            overflow: visible;  
+        }
+    }
+}

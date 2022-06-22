@@ -1,0 +1,154 @@
+@use "../../../utilities/variables" as v;
+
+#header{
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    position: fixed;
+    top: 24px;
+    width: 100%;
+    display: flex;
+    &.dark{
+        color: v.$dark_blue;
+        &>div{
+            background: rgba(11, 24, 50, 0.05);
+            border: 1px solid rgba(233, 240, 252, 0.1);
+            backdrop-filter: blur(24px);
+        }
+    }
+    &.white{
+        color: v.$white;
+        &>div{
+            background: rgba(11, 24, 50, 0.05);
+            border: 1px solid rgba(233, 240, 252, 0.1);
+        }
+    }
+    &>div{
+        backdrop-filter: blur(24px);
+        width: 1072px;
+        height: 72px;
+        padding: 0 24px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        border-radius: 16px;
+        display: flex;
+        .brand{
+            display: flex;
+            .logo{
+                margin: auto;
+                content: url('../../../utilities/icons/logo.svg');
+            }
+        }
+        ul{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown{
+            position: relative;
+            .dropbtn{
+                display: flex;
+                &::after{
+                    margin-top: -2px;
+                    margin-left: 4px;
+                    content: url('../../../utilities/icons/arrowdown.svg');
+                }
+            }
+            .dropcontent{
+                cursor: pointer;
+                color: v.$dark_blue;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 16px;
+                position: absolute;
+                // width: 196px;
+                // height: 192px;
+                left: 0;
+                top: 100%;
+                /* Color / white */
+                
+                background: v.$white;
+                border-radius: 8px;
+                li{
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid v.$light_blue;
+                    &:last-of-type{
+                        border: none;
+                    }
+                }
+            }
+            &:hover .dropcontent{
+                display: block;
+            }
+            &:hover .dropbtn{
+                &::after{
+                    content: url('../../../utilities/icons/arrowup.svg');
+                }
+            }
+        }
+        #page_titles{
+            // justify-self: center;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 100%;
+            gap: 16px;
+            &>li{
+                padding: 0 16px;
+            }
+            li{
+                height: 100%;
+                display: flex;
+                a{
+                    cursor: pointer;
+                    margin: auto 0;
+                }
+            }
+            
+        }
+        #language{
+            height: 100%;
+            display: flex;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            .lang-ru{
+                content: url('../../../utilities/icons/ru.png');
+            }
+            .lang-en{
+                content: url('../../../utilities/icons/en.png');
+            }
+            .lang-kz{
+                content: url('../../../utilities/icons/kz.png');
+            }
+            .dropbtn{
+                cursor: pointer;
+                margin: auto 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: nowrap;
+                padding: 8px;
+                &::after{
+                    margin-left: 0;
+                }
+            }
+            li{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: nowrap;
+                &.hidden{
+                    display: none;
+                }
+            }
+        }
+    }    
+
+}

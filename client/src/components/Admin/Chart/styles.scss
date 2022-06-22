@@ -1,0 +1,40 @@
+.chart{
+    box-sizing: border-box;
+    background: none;
+    padding: 16px 16px 0;
+    border-radius: 16px;
+    border: 2px solid #FFFFFF;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    .count{
+        margin-bottom: auto;
+        h3{
+            margin-bottom: 8px;
+        }
+    }
+    .line-chart{
+        position: relative;
+        width: 100%;
+        height: 150px;
+        .chart-point{
+            cursor: pointer;
+        }
+        .tooltip{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+            border-radius: 8px;
+            &>div{
+                padding: 6px 12px;
+                background-color: white;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 12px;
+                color: #5E646F;
+            }
+        }
+    }
+}

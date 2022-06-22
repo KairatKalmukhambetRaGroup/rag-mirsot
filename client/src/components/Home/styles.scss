@@ -1,0 +1,14 @@
+@use "../../utilities/variables";
+
+#home{
+    .block{
+        width: 100%;
+        &.block1{
+            background: linear-gradient(0deg, #0B1832 0%, rgba(9, 20, 41, 0.8) 35.38%, rgba(0, 0, 0, 0.4) 100%), url("../../utilities/images/businessmen-businesswomen-meeting-brainstorming-ideas-2.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 800px;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+#adminheader{
+    background-color: #0B1832;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    .brand{
+        display: flex;
+        .logotype{
+            margin: auto;
+            content: url('../../../utilities/icons/logo.svg');
+        }
+    }
+    .buttons{
+        display: flex;
+        gap: 24px;
+        .button-48px{
+            border-radius: 16px;
+        }
+        .cabinet{
+            background: none;
+            border: 2px solid #1C6BDB;
+        }
+    }
+}

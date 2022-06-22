@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+
+.bg-darkblue{
+    background-color: #0B1832;
+}
+.bg-lightblue{
+    background-color: #E9F0FC;
+}
+.bg-oceanblue{
+    background-color: #1C6BDB;
+}
+.bg-white{
+    background-color: #ffffff;
+}
+
+.heading-bold-48-56{
+    margin: 0;
+    padding-bottom: 16px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+}
+.title-bold-40-48{
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+}
+.title-semibold-32-48{
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 38px;
+}
+.title-semibold-24-32{
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+}
+.body-regular-22-28{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+}
+.body-regular-20-28{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+}
+.body-regular-16-20{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+}
+.link-regular-20-28{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    text-decoration-line: underline;
+}
+.button-regular-16-16{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+}
+.color-white{
+    color: #fff;
+}
+.color-grey {
+    color: #D6D9DD;
+}
+.color-black {
+    color: #0E0E0E;
+}
+.color-oceanblue{
+    color: #1C6BDB;
+}
+.color-darkgrey{
+    color: #5E646F;
+}
+.block{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+
+.textfields-48px{
+    label{
+        display: block;
+        padding-bottom: 8px;
+    }
+    .input{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid #D6D9DD;
+        background-color: #FFF;
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus, 
+        &:-webkit-autofill:active{
+            background-color: #fff;
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
+        }
+        &::placeholder{
+            color: #D6D9DD;
+        }
+    }
+}
+.checkbox{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    input[type=checkbox]{
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+        cursor: pointer;
+        margin-right: 10px;
+        margin-left: 2px;
+        width: 20px;
+        height: 20px;
+        border: 1.5px solid #5E646F;
+        border-radius: 4px;
+        display: flex;
+        &::before{
+            content: url('./utilities/icons/checked.svg');
+            // transform: translate(-10px, -10px);
+            width: 11px;
+            height: 8px;
+            margin-left: 2.5px;
+            margin-top: 1.5px;
+            transform: scale(0);
+        }
+        &:checked::before{
+            transform: scale(1);
+        }
+    }
+}
+
+.button-48px{
+    cursor: pointer;
+    height: 48px;
+    box-sizing: border-box;
+    background-color: #1C6BDB;
+    color: white;
+    display: flex;
+    width: 100%;
+    padding: 16px 50px;
+    white-space: nowrap;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    &:disabled{
+        background-color: #E9F0FC!important;
+    }
+}
+
+
+// flexbox
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.row-2{
+    display: flex;
+    flex-wrap: wrap;
+    &>.col{
+        width: calc(50% - (32px/2));
+    }
+}
+.row-3{
+    display: flex;
+    flex-wrap: wrap;
+    &>.col{
+        width: calc((100% - 32px)/3);
+    }
+}
