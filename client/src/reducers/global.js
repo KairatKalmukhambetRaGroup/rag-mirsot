@@ -9,8 +9,6 @@ const globalReducers = (state = {lang: 'ru'}, action) => {
                 localStorage.setItem('visitor', JSON.stringify({...action.payload.data}));        
             }
             return state;
-        case FETCH_VISITORS:
-            return {...state, visitors: action.payload.data};
         default:
             return state;
     }

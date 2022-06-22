@@ -4,7 +4,7 @@ import moment from 'moment';
 import './styles.scss';
 
 import { LineChart } from "./LineChart";
-const Chart = ({data, label, id}) => {
+const Chart = ({data, label, id, title = '. . .'}) => {
     function getCurvePoints(pts, tension, isClosed, numOfSegments) {
 
         // use input value if provided, or use a default value   
@@ -141,7 +141,7 @@ const Chart = ({data, label, id}) => {
         <div className="chart">
             <div className="count">
                 <h3 className="title-semibold-32-48">{today.count}</h3>
-                <p className="body-regular-16-20">{today.text}</p>
+                <p className="body-regular-16-20">{title}</p>
             </div>
             <div className="line-chart" id={id}>
             </div>

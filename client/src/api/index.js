@@ -18,3 +18,4 @@ export const fetchPageByName = (name) => API.get(`/pages/${name}`);
 // ADMIN
 export const login = (data) => API.post('/users/login', data);
 export const fetchVisitors = () => API.get('/visitors');
+export const fetchConsultationRequests = () => API.get('/consultations/new');

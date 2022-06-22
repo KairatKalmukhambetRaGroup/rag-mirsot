@@ -1,0 +1,22 @@
+.table-container{
+    table{
+        background-color: white;
+        border-radius: 16px;
+        padding: 16px;
+        padding-bottom: 0;
+        width: 100%;
+        thead{
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E9F0FC;
+            color: #5E646F;
+
+            text-align: left;
+        }
+        tbody{
+            padding-top: 16px;
+        }
+        td, th{
+            padding-bottom: 16px;
+        }
+    }
+}
