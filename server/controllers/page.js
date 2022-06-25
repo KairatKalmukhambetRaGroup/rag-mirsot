@@ -1,18 +1,12 @@
 import Page from "../models/page/page.js";
 import Block from '../models/page/block.js';
+import mongoose from "mongoose";
+import path from 'path';
+import { fileURLToPath } from "url";
 
 export const createPage = async (req, res) => {
-    const page = req.body;
     try {
-        // console.log(req.body);
-        let newBlocks = [];
-        if(page.blocks && page.blocks.length > 0){
-            for (let index = 0; index < page.blocks.length; index++) {
-                const subblock = page.blocks[index];
-                await createBlock(subblock).then((val) => { newBlocks.push(val) });
-            }
-        }
-        const newPage = await Page.create({...page, blocks: newBlocks});
+        const newPage = await Page.create(req.body);
         return res.json(newPage);
     } catch (error) {
         console.log(error);
@@ -20,19 +14,41 @@ export const createPage = async (req, res) => {
     }
 }
 
-var createBlock = async function (block) {
+export const createSubPage = async (req, res) => {
+    const { name } = req.params;
+    
     try {
-        let newSubblocks = [];
-        if(block.subblocks && block.subblocks.length > 0){
-            for (let index = 0; index < block.subblocks.length; index++) {
-                const subblock = block.subblocks[index];   
-                await createBlock(subblock).then((val) => { newSubblocks.push(val)});
-            }
-        }
-        const newBlock = await Block.create({...block, subblocks: newSubblocks});
-        return String(newBlock._id);
+        const page = await Page.findOne({name: name});
+        if(!page)
+            return res.status(404).json({error: "Page not found!"});
+
+        const subpage = await Page.create(req.body);
+        page.subpages.push(subpage._id);
+        await Page.findByIdAndUpdate(page._id, {subpages: page.subpages});
+        return res.json(subpage);
     } catch (error) {
-        throw error;
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."});
+    }
+}
+
+export const createBlock = async (req, res) => {
+    const {type} = req.body;
+    try {
+        if(type === 'image'){
+            const __filename = fileURLToPath(import.meta.url);
+            const __dirname = path.dirname(__filename);
+            
+            const newBlock = await Block.create({...req.body, src: req.file.filename});
+            return res.json(newBlock);
+        }
+        else{
+            const newBlock = await Block.create(req.body);
+            return res.json(newBlock);
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."});
     }
 }
 
@@ -45,14 +61,57 @@ export const getBlocks = async (req, res) => {
         return res.status(500).json({error: "Something went wrong."});
     }
 }
+export const updateBlock = async (req, res) => {
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id))
+        return res.status(404).json({error: "Block not found!"});
+
+    const updatedBlock = await Block.findByIdAndUpdate(id, req.body);
+
+    return res.json(updatedBlock);
+};
+export const deleteBlock = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!mongoose.Types.ObjectId.isValid(id))
+            return res.status(404).json({error: "Block not found!"});
+            
+        await Block.findByIdAndRemove(id);
+        return res.status(204).json();
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."});
+    }
+}
 
 export const getPages = async (req, res) => {
     try {
-        const pages = await Page.find().select('title_kz title_ru title_en -blocks');
+        const pages = await Page.find({showOnHeader: true}).select('name title -blocks').populate({
+            path: 'subpages',
+            select: 'name title -blocks',
+        });
         return res.json(pages);
     } catch (error) {
         console.log(error);
         return res.status(500).json({error: "Something went wrong."});
+    }
+}
+export const updatePage = async (req, res) => {
+    const { name } = req.params;
+
+    try {
+        const page = await Page.findOne({name: name});
+        if(!page)
+            return res.status(404).json({error: "Page not found!"});
+    
+        const updatedPage = await Page.findByIdAndUpdate(page._id, req.body);
+    
+        return res.json(updatedPage);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."}); 
     }
 }
 

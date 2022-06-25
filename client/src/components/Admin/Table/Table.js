@@ -16,7 +16,7 @@ const Table = ({title, data}) => {
     }, [data]);
     return (
         <div className='table-container'>
-            <h4 className='title-semibold-24-32'>{title}</h4>
+            <h4 className='title-semibold-24-32 mb-2'>{title}</h4>
             <table>
                 <thead>
                     <tr>

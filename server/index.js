@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import path from 'path';
+import { fileURLToPath } from "url";
 
 import userRoutes from './routes/user.js';
 import roleRoutes from './routes/role.js';
@@ -19,7 +21,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 app.use(cors());
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use('/images', express.static(path.join(__dirname, 'public')));
 app.use('/users', userRoutes);
 app.use('/roles', roleRoutes);
 app.use('/resources', resourceRoutes);

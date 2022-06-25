@@ -8,6 +8,7 @@ import About from "./components/About/About";
 import Login from "./components/Admin/Login/Login";
 import Admin from "./components/Admin/Admin";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Pages from "./components/Admin/Pages/Pages";
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
                 </>}>
                     <Route path="" element={<Admin />}>
                         <Route path="" element={<Dashboard />} />
+                        <Route path=":pagename" element={<Pages />} />
                     </Route>
                     <Route path="login" element={<Login />} />
                 </Route>

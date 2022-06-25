@@ -14,6 +14,7 @@ export const addVisitor = (data) => API.post('/visitors', data);
 
 // PAGES
 export const fetchPageByName = (name) => API.get(`/pages/${name}`);
+export const fetchPages = () => API.get(`/pages`);
 
 // ADMIN
 export const login = (data) => API.post('/users/login', data);

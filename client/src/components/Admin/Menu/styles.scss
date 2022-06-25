@@ -1,9 +1,15 @@
+@use "../../../utilities/variables" as v;
+
 #adminmenu{
     background-color: white;
     padding: 24px;
     border-radius: 16px;
     margin-bottom: auto;
     margin-left: 32px;
+    ul{
+        list-style: none;
+
+    }
     .subtitles{
         display: flex;
         flex-direction: column;
@@ -32,6 +38,51 @@
             a{
                 color: inherit;
                 text-decoration: none;
+            }
+        }
+        .dropdown{
+            .dropbtn{
+                display: flex;
+                &::after{
+                    margin-top: -2px;
+                    margin-left: 4px;
+                    content: url('../../../utilities/icons/arrowdown.svg');
+                }
+            }
+            .dropcontent{
+                cursor: pointer;
+                color: v.$dark_blue;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 16px;
+                // width: 196px;
+                // height: 192px;
+                left: 0;
+                top: 100%;
+                /* Color / white */
+                
+                background: v.$white;
+                border-radius: 8px;
+                li{
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid v.$light_blue;
+                    &:last-of-type{
+                        border: none;
+                        padding-bottom:0;
+                    }
+                }
+            }
+            &:hover .dropcontent{
+                display: block;
+            }
+            &:hover .dropbtn{
+                &::after{
+                    content: url('../../../utilities/icons/arrowup.svg');
+                }
             }
         }
     }

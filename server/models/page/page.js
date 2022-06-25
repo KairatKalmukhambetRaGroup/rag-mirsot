@@ -1,18 +1,21 @@
 import mongoose from "mongoose";
-import slug from 'mongoose-slug-generator';
-
-mongoose.plugin(slug);
 
 const pageSchema = mongoose.Schema({
     name: {type: String, required: true, unique: true},
-    title_kz: String,
-    title_ru: String,
-    title_en: String,
-    slug: {type: String, slug: "name", unique: true},
+    title: {
+        kz: String,
+        ru: String,
+        en: String
+    },
+    subpages: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Page'
+    }],
     blocks: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'ContentBlock'
-    }]
+    }],
+    showOnHeader: {type: Boolean, default: true}
 }, {
     timestamps: true
 });

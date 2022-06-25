@@ -44,9 +44,9 @@ const Dashboard = () => {
 
     return (
         <div id="dashboard">
-            <div className='charts'>
-                <h4 className='title-semibold-24-32'>Информация</h4>
-                <div className='row row-2'>
+            <div className='charts mb-5'>
+                <h4 className='title-semibold-24-32 mb-2'>Информация</h4>
+                <div className='row-2'>
                     <div className='col'>
                         <Chart data={visitors} id="visitorslinechart" title="Посетителей сегодня" label="Посетители"/>
                     </div>

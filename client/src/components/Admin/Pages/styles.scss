@@ -1,0 +1,19 @@
+#pages{
+    .iconcard, .text{
+        color: #0E0E0E;
+    }
+    .color-lightgrey{
+        color: #5E646F;
+    }
+    .edit-slideshow{
+        display: flex;
+        gap: 16px;
+        .image-container{
+            aspect-ratio: 3/2;
+            width: 363px;
+            // height: 232px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+    }
+}

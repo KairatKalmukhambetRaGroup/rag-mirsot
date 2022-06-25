@@ -1,0 +1,35 @@
+.d-flex{display: flex;align-items: flex-start;}
+.flex-column{flex-direction: column;}
+.row-3{
+    display: flex;
+    flex-wrap: wrap;
+    &>.col{
+        width: calc((100% - 32px)/3);
+    }
+}
+.row-2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &>.col{
+        width: calc(50% - (32px/2));
+    }
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.gap-1{
+    gap: 8px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .col{
+        width: 25%;
+    }
+}

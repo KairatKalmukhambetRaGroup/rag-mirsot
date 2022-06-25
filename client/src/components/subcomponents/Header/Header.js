@@ -8,12 +8,15 @@ import moment from 'moment';
 import './styles.scss';
 import { LANG } from "../../../constants/actionTypes";
 import { addVisitor } from "../../../actions/visitor";
+import { getPages } from "../../../actions/page";
 
 const Header = () => {
     const { t, i18n } = useTranslation();
     const [visitor, setVisitor] = useState(JSON.parse(localStorage.getItem('visitor')));
     const dispatch = useDispatch();
     const location = useLocation();
+
+    const {pages} = useSelector((state) => state.pages);
 
     const {lang} = useSelector((state) => state.global);
     useEffect(()=>{
@@ -23,6 +26,10 @@ const Header = () => {
             i18n.changeLanguage('ru');
         }
     }, [lang]);
+
+    useEffect(()=>{
+        dispatch(getPages());
+    }, [dispatch]);
 
     const changeLanguage = (e) => {
         e.preventDefault();
@@ -62,54 +69,81 @@ const Header = () => {
                     <i className="logo"></i>
                 </a>
                 <ul id="page_titles">
-                    <li className="dropdown">
-                        <a className="dropbtn">
-                            Направления
-                        </a>
-                        <ul className="dropcontent">
-                            <li>
-                                <a>Промышленность</a>
+                    {pages ? pages.map((page, key)=>{
+                        if(page.subpages.length > 0) 
+                            return (
+                                <li className="dropdown" key={key}>
+                                    <a className="dropbtn">
+                                        {page.title[lang]}
+                                    </a>
+                                    <ul className="dropcontent">
+                                        {page.subpages.map((subpage, subkey) => (
+                                            <li key={`${key}-${subkey}`}>
+                                                <a href={`/${subpage.name}`}>{subpage.title[lang]}</a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            );
+                        return (
+                            <li key={key}>
+                                <a href={`/${page.name}`}>
+                                    {page.title[lang]}
+                                </a>
                             </li>
-                            <li>
-                                <a>Продовольствие</a>
-                            </li>
-                            <li>
-                                <a>Торговля</a>
-                            </li>
-                            <li>
-                                <a>Сельское хозяйство</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="dropdown">
-                        <a className="dropbtn">
-                            Услуги
-                        </a>
-                        <ul className="dropcontent">
-                            <li>
-                                <a>Финансы</a>
-                            </li>
-                            <li>
-                                <a>Юриспруденция</a>
-                            </li>
-                            <li>
-                                <a>Менеджмент</a>
-                            </li>
-                            <li>
-                                <a>IT технологии</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/about">
-                            {t("header.pagetitles.about")}
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            {t("header.pagetitles.contacts")}
-                        </a>
-                    </li>
+                        )
+                    }) : (
+                        <>
+                        <li className="dropdown">
+                            <a className="dropbtn">
+                                Направления
+                            </a>
+                            <ul className="dropcontent">
+                                <li>
+                                    <a>Промышленность</a>
+                                </li>
+                                <li>
+                                    <a>Продовольствие</a>
+                                </li>
+                                <li>
+                                    <a>Торговля</a>
+                                </li>
+                                <li>
+                                    <a>Сельское хозяйство</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="dropdown">
+                            <a className="dropbtn">
+                                Услуги
+                            </a>
+                            <ul className="dropcontent">
+                                <li>
+                                    <a>Финансы</a>
+                                </li>
+                                <li>
+                                    <a>Юриспруденция</a>
+                                </li>
+                                <li>
+                                    <a>Менеджмент</a>
+                                </li>
+                                <li>
+                                    <a>IT технологии</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/about">
+                                {t("header.pagetitles.about")}
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                {t("header.pagetitles.contacts")}
+                            </a>
+                        </li>
+                        </>
+                    )}
                 </ul>
                 <div id="language" className="dropdown">
                         <a className="dropbtn">

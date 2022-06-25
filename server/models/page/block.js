@@ -1,22 +1,22 @@
 import mongoose from "mongoose";
-import slug from 'mongoose-slug-generator';
 
-mongoose.plugin(slug);
 
 const blockSchema = mongoose.Schema({
-    name: {type: String, required: true},
-    slug: {type: String, slug: "name", unique: true},
-    block_type: {type: String, required: true},
+    type: {type: String, required: true},
     classname: String,
-    text_kz: String,
-    text_ru: String,
-    text_en: String,
+    text: {
+        kz: String,
+        ru: String,
+        en: String
+    },
     src: String,
     href: String,
+    id: String,
     subblocks: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'ContentBlock',
-    }]
+    }],
+    editable: {type: Boolean, default: true}
 }, {
     timestamps: true
 });

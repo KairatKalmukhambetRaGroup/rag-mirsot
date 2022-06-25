@@ -9,6 +9,7 @@
     top: 24px;
     width: 100%;
     display: flex;
+    z-index: 1000;
     &.dark{
         color: v.$dark_blue;
         &>div{

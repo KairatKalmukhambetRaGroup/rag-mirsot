@@ -1,14 +1,63 @@
 @use "../../utilities/variables";
 
 #home{
-    .block{
+    #mainpage-block1{
+        background: linear-gradient(0deg, #0B1832 0%, rgba(9, 20, 41, 0.8) 35.38%, rgba(0, 0, 0, 0.4) 100%);
+        // background-position: center;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        height: 100vh;
+        max-height: 800px;
+        position: relative;
+    }
+    #mainpage-block2{
+        padding: 96px 0;
+        background-color: #0B1832;
+    }
+}
+
+.image-container{
+    width: 100%;
+    height: 100%;
+    img{
         width: 100%;
-        &.block1{
-            background: linear-gradient(0deg, #0B1832 0%, rgba(9, 20, 41, 0.8) 35.38%, rgba(0, 0, 0, 0.4) 100%), url("../../utilities/images/businessmen-businesswomen-meeting-brainstorming-ideas-2.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 800px;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.background{
+    z-index: -10;
+}
+
+.slideshow{
+    height: 100%;
+    width: 100%;
+    // position: relative;
+    .slideshow-container{
+        width: 100%;
+        height: 100%;
+        .slide{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .slideshow-dots{
+        z-index: 100;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .dot{
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: #E9F0FC;
+            // opacity: 0.2;
         }
     }
 }

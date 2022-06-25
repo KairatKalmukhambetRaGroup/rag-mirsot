@@ -11,6 +11,7 @@ export const AUTH = 'AUTH';
 
 // PAGES
 export const FETCH_PAGE = 'FETCH_PAGE';
+export const FETCH_PAGES = 'FETCH_PAGES';
 export const CLEAR_PAGE = 'CLEAR_PAGE';
 
 // ADMIN
