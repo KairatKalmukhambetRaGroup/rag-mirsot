@@ -13,6 +13,8 @@ import './styles/flexbox.scss';
 import './styles/typography.scss';
 import './styles/inputs.scss';
 import './styles/spacing.scss';
+import './styles/skeleton.scss';
+import './styles/cards.scss';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById('root'));

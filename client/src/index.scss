@@ -6,3 +6,23 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.whatsapp-icon{
+    content: url('./utilities/icons/whatsapp.svg');
+}
+.facebook-icon{
+    content: url('./utilities/icons/facebook.svg');
+}
+.instagram-icon{
+    content: url('./utilities/icons/instagram.svg');
+}
+
+.iconcard{
+    .image-container{
+        width: 40px;
+        height: 40px;
+        padding: 20px;
+        border-radius: 16px;
+        background: rgba($color: #1C6BDB, $alpha: .15);
+        margin-bottom: 8px;
+    }
+}

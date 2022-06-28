@@ -1,18 +1,55 @@
-@use "../../utilities/variables";
+@use "../../utilities/variables" as v;
+@import "../../utilities/adaptive";
 
 #home{
-    #mainpage-block1{
-        background: linear-gradient(0deg, #0B1832 0%, rgba(9, 20, 41, 0.8) 35.38%, rgba(0, 0, 0, 0.4) 100%);
+    #home-heading{
+        background: linear-gradient(0deg, v.$dark_blue 0%, rgba(9, 20, 41, 0.8) 35.38%, rgba(0, 0, 0, 0.4) 100%);
         // background-position: center;
         // background-repeat: no-repeat;
         // background-size: cover;
         height: 100vh;
-        max-height: 800px;
+        max-height: 400px;
+        @include _lg{
+            max-height: 800px;
+        }
         position: relative;
     }
-    #mainpage-block2{
+    #home-directions{
         padding: 96px 0;
-        background-color: #0B1832;
+        background-color: v.$dark_blue;
+        
+    }
+    #home-services{
+        padding: 96px 0;
+        background-color: v.$white;
+    }
+    #home-consulting{
+        padding: 96px 0;
+        background-color: v.$white;
+        .col:first-of-type{
+            padding-top: 40px;
+            display: flex;
+            position: relative;
+            .text{
+                position: absolute;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                z-index: 1;
+                height: 100%;
+            }
+            .symbols-visual{
+                display: flex;
+                i{
+                    margin: auto;
+                    content: url("../../utilities/icons/bg-symbols-box.svg");
+                }
+                @include _xl{
+                    margin-left: -40px;
+                }
+            }
+        }
     }
 }
 

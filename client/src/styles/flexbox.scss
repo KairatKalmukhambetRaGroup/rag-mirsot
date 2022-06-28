@@ -1,4 +1,6 @@
-.d-flex{display: flex;align-items: flex-start;}
+@import "../utilities/adaptive";
+
+.d-flex{display: flex; align-items: flex-start;}
 .flex-column{flex-direction: column;}
 .row-3{
     display: flex;
@@ -31,5 +33,73 @@
     flex-wrap: wrap;
     .col{
         width: 25%;
+    }
+}
+.row-1{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-lg-column-reverse{
+    @include _lg{
+        flex-direction: column-reverse;
+    }
+}
+.flex-xl-column-reverse{
+    @include _xl{
+        flex-direction: column-reverse;
+    }
+}
+.row-lg-2{
+    @include _lg{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &>.col{
+            max-width: calc((100% - 32px)/2);
+            min-width: calc((100% - 32px)/2);
+            width: calc((100% - 32px)/2);
+        }
+    }
+}
+
+.row-lg-3{
+    @include _lg{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &>.col{
+            max-width: calc((100% - 32px)/3);
+            min-width: calc((100% - 32px)/3);
+            width: calc((100% - 32px)/3);
+        }
+    }
+}
+.row-lg-4{
+    @include _lg{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &>.col{
+            max-width: calc((100% - 32px)/4);
+            min-width: calc((100% - 32px)/4);
+            width: calc((100% - 32px)/4);
+        }
+    }
+}
+
+.container{
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 16px;
+    @include _lg{
+        width: 1120px;
+        margin: 0 auto;
     }
 }

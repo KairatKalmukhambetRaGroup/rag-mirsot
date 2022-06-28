@@ -9,6 +9,7 @@ import Login from "./components/Admin/Login/Login";
 import Admin from "./components/Admin/Admin";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Pages from "./components/Admin/Pages/Pages";
+import Footer from "./components/subcomponents/Footer/Footer";
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
                 <Route path="/" element={<>
                     <Header />
                     <Outlet/> 
+                    <Footer />
                 </>}>
                     <Route path="" exact element={<Home />}/>
                     <Route path="about" exact element={<About />}/>

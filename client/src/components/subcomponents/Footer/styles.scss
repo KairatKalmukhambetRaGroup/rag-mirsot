@@ -1,0 +1,71 @@
+@use "../../../utilities/variables" as v;
+@import "../../../utilities/adaptive";
+
+#footer{
+    background-color: v.$dark_blue;
+    color: v.$white;
+    padding: 64px 0;
+    .brand{
+        display: block;
+        margin-bottom: 24px;
+        .logo{
+            content: url('../../../utilities/icons/logo-large.svg');
+        }
+    }
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .additional-links{
+        li{
+            font-size: 16px;
+            margin-bottom: 16px;
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+    .social_media{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        .social{
+            width: 24px;
+            height: 24px;
+            display: flex;
+            box-sizing: border-box;
+            i{
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+    .contacts{
+        color: inherit;
+        &>*{
+            margin-bottom: 8px;
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+        a{
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+        @include _lg{
+            margin-bottom: 24px;
+        }
+    }
+    .sitemap{
+        color: inherit;
+        a{
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    }
+}
+
