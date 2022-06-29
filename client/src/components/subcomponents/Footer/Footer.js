@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPages } from "../../../actions/page";
 
 import './styles.scss';
 
 const Footer = () => {
+    const {pages} = useSelector((state) => state.pages);
+    const {lang} = useSelector((state) => state.global);
+
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getPages());
+    }, [dispatch])
+
     return (
         <div id="footer">
             <div className="container">
@@ -25,21 +37,31 @@ const Footer = () => {
                     </div>
                     <div className="col">
                         <ul className="sitemap">
-                            <li>
-                                <a href="/">home</a>
-                            </li>
-                            <li>
-                                <a></a>
-                            </li>
-                            <li>
-                                <a></a>
-                            </li>
-                            <li>
-                                <a href="/about"></a>
-                            </li>
-                            <li>
-                                <a></a>
-                            </li>
+                            {pages ? pages.map((page, key)=>(
+                                <li key={key}> 
+                                    <a href={`/${page.name === 'home' ? '' : page.name}`}>
+                                        {page.title[lang]}
+                                    </a>
+                                </li>
+                            )) : (
+                                <>
+                                    <li>
+                                        <div className="skeleton skeleton-text__body"/>
+                                    </li>
+                                    <li>
+                                        <div className="skeleton skeleton-text__body"/>
+                                    </li>
+                                    <li>
+                                        <div className="skeleton skeleton-text__body"/>
+                                    </li>
+                                    <li>
+                                        <div className="skeleton skeleton-text__body"/>
+                                    </li>
+                                    <li>
+                                        <div className="skeleton skeleton-text__body"/>
+                                    </li>
+                                </>
+                            )}
                         </ul>
                     </div>
                     <div className="col">

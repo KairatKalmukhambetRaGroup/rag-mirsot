@@ -11,6 +11,10 @@ const pageSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Page'
     }],
+    parent: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Page'
+    },
     showOnHeader: {type: Boolean, default: true}
 }, {
     timestamps: true

@@ -1,5 +1,4 @@
 import Page from "../models/page/page.js";
-import Block from '../models/page/block.js';
 import mongoose from "mongoose";
 import path from 'path';
 import { fileURLToPath } from "url";
@@ -24,7 +23,7 @@ export const createSubPage = async (req, res) => {
         if(!page)
             return res.status(404).json({error: "Page not found!"});
 
-        const subpage = await Page.create(req.body);
+        const subpage = await Page.create({...req.body, parent: page._id});
         page.subpages.push(subpage._id);
         await Page.findByIdAndUpdate(page._id, {subpages: page.subpages});
         return res.json(subpage);
@@ -37,7 +36,7 @@ export const createSubPage = async (req, res) => {
 
 export const getPages = async (req, res) => {
     try {
-        const pages = await Page.find({showOnHeader: true}).select('name title').populate({
+        const pages = await Page.find({parent: null}).select('name title showOnHeader').populate({
             path: 'subpages',
             select: 'name title',
         });

@@ -1,0 +1,12 @@
+@use '../../../utilities/variables' as v;
+
+#consultation-form{
+    padding: 40px;
+    background-color: rgba($color: v.$light_blue, $alpha: .5);
+    border-radius: 24px;
+    .textfields-48px{
+        input, .input{
+            border: none;
+        }
+    }
+}

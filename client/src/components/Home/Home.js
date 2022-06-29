@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getPageByName } from "../../actions/page";
+import ConsultationForm from "../subcomponents/Consultation/ConsultationForm";
 
 import './styles.scss';
 
@@ -10,7 +11,6 @@ const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getPageByName('home'));
-        console.log(page);
     }, [dispatch]);
 
     return (
@@ -116,7 +116,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="col">
-
+                            <ConsultationForm />
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import "./i18n";
 
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Home from "./components/Home/Home";

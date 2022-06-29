@@ -1,0 +1,34 @@
+@use '../../../utilities/variables' as v;
+
+#breadcrumb{
+    &.theme-white{
+        background-color: v.$white;
+        .breadcrumb{
+            color: v.$dark_grey;
+            &:last-of-type{
+                color: v.$black;
+            }
+        }
+    }
+    &.theme-dark{
+        background-color: v.$dark_blue;
+        .breadcrumb{
+            color: v.$light_grey;
+            &:last-of-type{
+                color: v.$white;
+            }
+        }
+    }
+    .top{
+        width: 100%;
+        height: 128px;
+    }
+    .breadcrumbs{
+        background-color: rgba($color: #F7F7F7, $alpha: .05);
+        padding: 32px 0;
+        .breadcrumbs-content{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+}

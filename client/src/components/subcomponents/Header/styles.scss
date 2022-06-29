@@ -1,4 +1,5 @@
 @use "../../../utilities/variables" as v;
+@import '../../../utilities/adaptive';
 
 #header{
     a{
@@ -10,30 +11,43 @@
     width: 100%;
     display: flex;
     z-index: 1000;
-    &.dark{
-        color: v.$dark_blue;
-        &>div{
-            background: rgba(11, 24, 50, 0.05);
-            border: 1px solid rgba(233, 240, 252, 0.1);
-            backdrop-filter: blur(24px);
-        }
-    }
-    &.white{
-        color: v.$white;
-        &>div{
-            background: rgba(11, 24, 50, 0.05);
-            border: 1px solid rgba(233, 240, 252, 0.1);
-        }
-    }
-    &>div{
+    
+    .container>div{
+        background: rgba(11, 24, 50, 0.05);
+        border: 1px solid rgba(233, 240, 252, 0.1);
         backdrop-filter: blur(24px);
-        width: 1120px;
+        width: 100%;
         height: 72px;
         padding: 0 24px;
         box-sizing: border-box;
         margin: 0 auto;
         border-radius: 16px;
         display: flex;
+        .collapse{
+            display: none;
+            width: 100%;
+            &.active{
+                display: flex;
+            }
+            @include _md{
+                box-sizing: border-box;
+                display: flex;
+            }
+        }
+        #menu-hamburger{
+            display: flex;
+            margin-left: auto;
+            @include _md{
+                display: none;
+            }
+            i{
+                content: url('../../../utilities/icons/menu_hambuger.svg');
+                display: block;
+                width: 24px;
+                height: 24px;
+                margin: auto;
+            }
+        }
         .brand{
             display: flex;
             .logo{
@@ -45,14 +59,17 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            li{
+                white-space: nowrap;
+            }
         }
         .dropdown{
             position: relative;
             .dropbtn{
                 display: flex;
                 &::after{
-                    margin-top: -2px;
-                    margin-left: 4px;
+                    transition: transform .2s linear;
+                    height: 20px;
                     content: url('../../../utilities/icons/arrowdown.svg');
                 }
             }
@@ -60,6 +77,7 @@
                 cursor: pointer;
                 color: v.$dark_blue;
                 display: none;
+                overflow: hidden;
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 0 16px;
@@ -88,7 +106,8 @@
             }
             &:hover .dropbtn{
                 &::after{
-                    content: url('../../../utilities/icons/arrowup.svg');
+                    transform: rotateX(180deg);
+                    // content: url('../../../utilities/icons/arrowup.svg');
                 }
             }
         }
@@ -105,8 +124,8 @@
             }
             li{
                 height: 100%;
-                display: flex;
-                a{
+                display: flex;                
+                a, div{
                     cursor: pointer;
                     margin: auto 0;
                 }
@@ -150,6 +169,28 @@
                 }
             }
         }
-    }    
+    } 
+    
+    
+    &.theme-dark{
+        color: v.$dark_blue;
+        .brand{
+            display: flex;
+            .logo{
+                margin: auto;
+                content: url('../../../utilities/icons/logo-dark.svg')!important;
+            }
+        }
+        .dropdown{
+            .dropbtn{
+                &::after{
+                    content: url('../../../utilities/icons/arrowdown-dark.svg')!important;
+                }
+            }
+        }
+    }
+    &.theme-light{
+        color: v.$white;
+    }
 
 }
