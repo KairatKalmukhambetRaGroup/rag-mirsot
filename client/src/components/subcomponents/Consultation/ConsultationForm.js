@@ -25,9 +25,10 @@ const btn = {
     ru: 'Записаться',
 }
 
-const ConsultationForm = () => {
+const ConsultationForm = ({size}) => {
     const [formData, setFormData] = useState(initialState);
     const {lang} = useSelector((state)=>state.global);
+    const {pages} = useSelector((state)=>state.pages);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -44,25 +45,51 @@ const ConsultationForm = () => {
             <div className="semibold-24-32 mb-3">
                 {heading[lang]}
             </div>
-            <div className="d-flex flex-column gap-3 mb-4">
-                <div className="d-flex flex-column gap-3 w-100">
-                    <div className="textfields-48px w-100">
-                        <label>{labels.name[lang]}</label>
-                        <input type="text" name="name" placeholder={placeholders.name[lang]} value={formData.name} onChange={handleChange} />
-                    </div>
-                    <div className="textfields-48px w-100">
-                        <label>{labels.email[lang]}</label>
-                        <input type="text" name="email" placeholder={placeholders.email[lang]} value={formData.email} onChange={handleChange} />
+            <div className={`gap-3 mb-4 row-1  ${size === 'sm' ? '' : 'row-lg-2'}`}>
+                <div className="col">
+                    <div className="d-flex flex-column gap-3 w-100">
+                        <div className="textfields-48px w-100">
+                            <label>{labels.name[lang]}</label>
+                            <input type="text" name="name" placeholder={placeholders.name[lang]} value={formData.name} onChange={handleChange} />
+                        </div>
+                        <div className="textfields-48px w-100">
+                            <label>{labels.email[lang]}</label>
+                            <input type="text" name="email" placeholder={placeholders.email[lang]} value={formData.email} onChange={handleChange} />
+                        </div>
                     </div>
                 </div>
-                <div className="d-flex flex-column gap-3 w-100">
-                    <div className="textfields-48px w-100">
-                        <label>{labels.direction[lang]}</label>
-                        <input type="text" name="name" placeholder={placeholders.direction[lang]} value={formData.direction} onChange={handleChange} />
-                    </div>
-                    <div className="textfields-48px w-100">
-                        <label>{labels.service[lang]}</label>
-                        <input type="text" name="email" placeholder={placeholders.service[lang]} value={formData.email} onChange={handleChange} />
+                <div className="col">
+                    <div className="d-flex flex-column gap-3 w-100">
+                        <div className="textfields-48px w-100">
+                            <label>{labels.direction[lang]}</label>
+                            <select required name="direction"  value={formData.direction} onChange={handleChange}>
+                                <option value='' disabled hidden>{placeholders.direction[lang]}</option>
+                                {pages && pages.map((pg, key) => {
+                                    if(pg.name === 'directions' && pg.subpages.length > 0){
+                                        return pg.subpages.map((sp, i)=>(
+                                            <option value={sp.name} key={i}>
+                                                {sp.title[lang]}
+                                            </option>
+                                        ));
+                                    }
+                                })}
+                            </select>
+                        </div>
+                        <div className="textfields-48px w-100">
+                            <label>{labels.service[lang]}</label>
+                            <select required name="service"  value={formData.service} onChange={handleChange}>
+                                <option value='' disabled hidden>{placeholders.service[lang]}</option>
+                                {pages && pages.map((pg, key) => {
+                                    if(pg.name === 'services' && pg.subpages.length > 0){
+                                        return pg.subpages.map((sp, i)=>(
+                                            <option value={sp.name} key={i}>
+                                                {sp.title[lang]}
+                                            </option>
+                                        ));
+                                    }
+                                })}
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

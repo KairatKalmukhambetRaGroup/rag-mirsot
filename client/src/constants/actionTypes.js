@@ -13,6 +13,8 @@ export const AUTH = 'AUTH';
 export const FETCH_PAGE = 'FETCH_PAGE';
 export const FETCH_PAGES = 'FETCH_PAGES';
 export const CLEAR_PAGE = 'CLEAR_PAGE';
+export const FETCH_TEXTS = 'FETCH_TEXTS';
+
 
 // ADMIN
 export const FETCH_VISITORS = 'FETCH_VISITORS';

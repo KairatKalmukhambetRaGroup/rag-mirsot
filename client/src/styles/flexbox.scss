@@ -6,16 +6,18 @@
 .row-3{
     display: flex;
     flex-wrap: wrap;
+    gap: 32px;
     &>.col{
-        width: calc((100% - 32px)/3);
+        width: calc((100%/3) - 32px);
     }
 }
 .row-2{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 32px;
     &>.col{
-        width: calc(50% - (32px/2));
+        width: calc(50% - 32px);
     }
 }
 .row{
@@ -32,6 +34,9 @@
 }
 .gap-3{
     gap: 24px;
+}
+.gap-4{
+    gap: 32px;
 }
 
 .row{
@@ -88,11 +93,12 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 32px;
         &>.col{
-            max-width: calc((100% - 32px)/3);
-            min-width: calc((100% - 32px)/3);
-            width: calc((100% - 32px)/3);
+            max-width: calc(100%/3 - 32px);
+            min-width: calc(100%/3 - 32px);
+            width: calc(100%/3 - 32px);
         }
     }
 }
@@ -101,11 +107,12 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 32px;
         &>.col{
-            max-width: calc((100% - 32px)/4);
-            min-width: calc((100% - 32px)/4);
-            width: calc((100% - 32px)/4);
+            max-width: calc(25% - 32px);
+            min-width: calc(25% - 32px);
+            width: calc(25% - 32px);
         }
     }
 }

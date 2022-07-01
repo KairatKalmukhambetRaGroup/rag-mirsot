@@ -9,6 +9,7 @@ import Admin from "./components/Admin/Admin";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Pages from "./components/Admin/Pages/Pages";
 import Footer from "./components/subcomponents/Footer/Footer";
+import Subpage from "./components/Subpage/Subpage";
 
 
 const App = () => {
@@ -22,6 +23,11 @@ const App = () => {
                 </>}>
                     <Route path="" exact element={<Home />}/>
                     <Route path="about" exact element={<About />}/>
+                    {["directions", "services"].map((path, index) => (
+                        <Route path={path} key={index}>
+                            <Route path=":pagename" element={<Subpage parent={path} /> } />
+                        </Route>
+                    ))}
                 </Route>
                 <Route path="/admin" element={<>
                     <Outlet />

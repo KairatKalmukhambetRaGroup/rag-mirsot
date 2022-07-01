@@ -9,13 +9,14 @@
         font-size: 16px;
         line-height: 16px;
     }
-    input, .input{
+    input, .input, select{
         box-sizing: border-box;
         width: 100%;
         padding: 16px;
         border-radius: 8px;
         border: 1px solid #D6D9DD;
         background-color: #FFF;
+        color: v.$dark_blue;
         &:-webkit-autofill,
         &:-webkit-autofill:hover, 
         &:-webkit-autofill:focus, 
@@ -25,6 +26,11 @@
         }
         &::placeholder{
             color: #D6D9DD;
+        }
+    }
+    select:invalid { color: #D6D9DD; 
+        option{
+            color: v.$dark_blue;
         }
     }
 }

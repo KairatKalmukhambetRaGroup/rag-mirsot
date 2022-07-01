@@ -16,6 +16,7 @@ const Header = () => {
     const {lang} = useSelector((state) => state.global);
     
     const [blocks, setBlocks] = useState([]);
+    const [currentBlock, setCurrentBlock] = useState({i: NaN, y: NaN, h: NaN, theme: 'dark'});
     const [theme, setTheme] = useState('light');
     
     const visitor = JSON.parse(localStorage.getItem('visitor'));
@@ -27,25 +28,25 @@ const Header = () => {
     useEffect(()=>{dispatch(getPages())}, [dispatch]);
 
     // CHANGE HEADER STYLING
+
+
     const handleScroll = () => {
         const y = window.scrollY + 60;
         if(blocks.length>0){
-            for (let index = 0; index < blocks.length; index++) {
-                const block = blocks[index];
-                if(block.y <= y && (block.h+block.y) >= y){
-                    let thm = 'light'
-                    if(block.grey >= 128)
-                        thm = 'dark';
-                    if(theme !== thm)
-                        setTheme(thm);
-                    break;
-                }
+            if(y < currentBlock.y && currentBlock.i > 0){
+                const newBlock = blocks[currentBlock.i-1];
+                setCurrentBlock(newBlock);
+                setTheme(newBlock.theme);
+            }else if(y > currentBlock.h+currentBlock.y && currentBlock.i < blocks.length-1){
+                const newBlock = blocks[currentBlock.i+1];
+                setCurrentBlock(newBlock);
+                setTheme(newBlock.theme);
             }
         }
     }
     window.addEventListener('scroll', handleScroll)
     useEffect(()=>{
-        if(blocks.length === 0){
+        if(!blocks || blocks.length === 0){
             const elBlocks = document.getElementsByClassName('block');
             const newBlocks = [];
 
@@ -55,11 +56,26 @@ const Header = () => {
                 var y = block.offsetTop; 
                 const rgb = (window.getComputedStyle(block).backgroundColor).split('(')[1].split(')')[0].replace(/ /g, '').split(',');   
                 const grey = Math.round((Number(rgb[0]) + Number(rgb[1]) + Number(rgb[2]))/3); 
-                newBlocks.push({y, h, grey});
+                const theme = (grey >= 128) ? 'dark' : 'light';
+                newBlocks.push({y, h, theme, i: index});
             }
             setBlocks(newBlocks);
+            y = window.scrollY + 60;
+
+            if(newBlocks.length>0){
+                for (let index = 0; index < newBlocks.length; index++) {
+                    const block = newBlocks[index];
+                    if(block.y <= y && (block.h+block.y) >= y){
+                        setCurrentBlock(block);
+                        if(theme !== block.theme){
+                            setTheme(block.theme);
+                        }
+                        break;
+                    }
+                }
+            }
         }
-    }, [blocks])
+    }, [])
     //CHANGE LANGUAGE 
     const changeLanguage = (e) => {
         e.preventDefault();
@@ -108,7 +124,7 @@ const Header = () => {
                                                 <ul className="dropcontent">
                                                     {page.subpages.map((subpage, subkey) => (
                                                         <li key={`${key}-${subkey}`}>
-                                                            <a href={`/${subpage.name}`}>{subpage.title[lang]}</a>
+                                                            <a href={`/${page.name}/${subpage.name}`}>{subpage.title[lang]}</a>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -116,7 +132,7 @@ const Header = () => {
                                         );
                                     return (
                                         <li key={key}>
-                                            <a href={`/${page.name}`}>{page.title[lang]}</a>
+                                            <a href={page.name === 'contacts' ? '#footer' : `/${page.name}`}>{page.title[lang]}</a>
                                         </li>
                                     )
                                 }

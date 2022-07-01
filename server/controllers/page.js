@@ -66,10 +66,11 @@ export const updatePage = async (req, res) => {
 export const getPageByName = async (req, res) => {
     const {name} = req.params;
     try {
-        const page = await Page.findOne({name: name}).select('name');
+        const page = await Page.findOne({name: name});
         const texts = await Text.find({parentId: page._id});
         const images = await Image.find({parentId: page._id});
         let arr = {};
+        arr.title = page.title;
         texts.map((txt) => {
             arr[txt.name] = txt;
         })
@@ -78,7 +79,7 @@ export const getPageByName = async (req, res) => {
         if(name === 'home') {
             // directions
             arr.directions = [];
-            const direction = await Page.findById('62b70c26556a92fb604b3f81').select('subpages').populate({
+            const direction = await Page.findOne({name: 'directions'}).select('subpages').populate({
                 path: 'subpages',
                 select: 'title name'
             });
@@ -86,6 +87,35 @@ export const getPageByName = async (req, res) => {
                 const sub = direction.subpages[index];
                 const img = await Image.findOne({parentId: sub._id});
                 arr.directions.push({_id: sub._id, name: sub.name, title: sub.title, image: img.src});
+            }
+            // services
+            arr.services = [];
+            const service = await Page.findOne({name: 'services'}).select('subpages').populate({
+                path: 'subpages',
+                select: 'title name'
+            });
+            for (let index = 0; index < service.subpages.length; index++) {
+                const sub = service.subpages[index];
+                const img = await Image.findOne({parentId: sub._id});
+                arr.services.push({_id: sub._id, name: sub.name, title: sub.title, image: img.src});
+            }
+        }
+
+        if(page.parent){
+            arr.siblings = [];
+            const parent = await Page.findById(page.parent).select('subpages').populate({
+                path: 'subpages',
+                select: 'title name',
+                match: {
+                    _id: {
+                        $ne: page._id
+                    }
+                }
+            });
+            for (let index = 0; index < parent.subpages.length; index++) {
+                const sub = parent.subpages[index];
+                const img = await Image.findOne({parentId: sub._id});
+                arr.siblings.push({_id: sub._id, name: sub.name, title: sub.title, image: img.src});
             }
         }
 
@@ -105,6 +135,21 @@ export const createText = async (req, res) => {
 
         const text = await Text.create(req.body);
         return res.json(text);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."});
+    }
+}
+
+export const getTextByNames = async (req, res) => {
+    const {names} = req.query;
+    try {
+        const texts = await Text.find({name: {$in: names.split(',')}});
+        let arr = {};
+        texts.map((txt) => {
+            arr[txt.name] = txt;
+        })
+        return res.json(arr);
     } catch (error) {
         console.log(error);
         return res.status(500).json({error: "Something went wrong."});

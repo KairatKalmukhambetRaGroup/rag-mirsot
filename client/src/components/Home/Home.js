@@ -51,15 +51,20 @@ const Home = () => {
             <div className="block" id="home-directions">
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
-                        <div className={`semibold-32-48 color-white pb-8 ${!page && 'skeleton skeleton-text'}`}>
-                            {page && page.home_directions_heading[lang]}
+                        <div className='semibold-32-48 color-white pb-8 w-100'>
+                            {page ? page.home_directions_heading[lang] : (<div className="skeleton skeleton-text w-30" />)}
                         </div>
-                        <div className={`regular-22-28 color-lightgrey ${!page && 'skeleton skeleton-text'}`}>
-                            {page && page.home_directions_subheading[lang]}
+                        <div className='regular-22-28 color-lightgrey w-100'>
+                            {page ? page.home_directions_subheading[lang] : (
+                                <>
+                                <div className="skeleton skeleton-text"/>
+                                    <div className="skeleton skeleton-text w-70"/>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div className="row-2 row-lg-4">
-                        {page && page.directions.map((sub)=>(
+                        {page ? page.directions.map((sub)=>(
                             <div className="col" key={sub._id}>
                                 <div className="icon-card directions color-lightblue">
                                     <div className="d-flex">
@@ -72,28 +77,130 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        )) : (
+                            <>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )} 
                     </div>
                 </div>
             </div>
             <div className="block" id="home-services">
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
-                        <div className={`semibold-32-48 color-black pb-8 ${!page && 'skeleton skeleton-text'}`}>
-                            {page && page.home_services_heading[lang]}
+                        <div className='semibold-32-48 color-black pb-8 w-100'>
+                            {page ? page.home_services_heading[lang] : (<div className="skeleton skeleton-text w-30" />)}
                         </div>
-                        <div className={`regular-22-28 color-darkgrey ${!page && 'skeleton skeleton-text'}`}>
-                            {page && page.home_services_subheading[lang]}
+                        <div className='regular-22-28 color-darkgrey  w-100'>
+                            {page ? page.home_services_subheading[lang] : (
+                                <>
+                                    <div className="skeleton skeleton-text"/>
+                                    <div className="skeleton skeleton-text w-70"/>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div className="row-2 row-lg-4">
-                        <div className="col">
-                            
-                        </div>
+                        {page ? page.services.map((sub)=>(
+                            <div className="col" key={sub._id}>
+                                <div className="icon-card services color-lightblue">
+                                    <div className="d-flex">
+                                        <div className="icon-cardimage">
+                                            <img src={`http://localhost:5000/images/${sub.image}`} />
+                                        </div>
+                                    </div>
+                                    <div className="icon-cardtitle color-darkblue">
+                                        {sub.title[lang]}
+                                    </div>
+                                </div>
+                            </div>
+                        )) : (
+                            <>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="icon-card directions color-lightblue">
+                                        <div className="d-flex">
+                                            <div className="icon-cardimage skeleton" />
+                                        </div>
+                                        <div className="icon-cardtitle color-darkblue semibold-24-32 w-70">
+                                            <div className="skeleton skeleton-text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )} 
                     </div>
                 </div>
             </div>
-            <div className="block" id="home-consulting">
+            <div className="block" id="consulting">
                 <div className="container">
                     <div className="semibold-32-48 color-darkblue">
                         Консультация
@@ -103,20 +210,25 @@ const Home = () => {
                             <div className="symbols-visual">
                                 <i></i>
                             </div>
-                            <div className="text">
+                            <div className="text w-100">
                                 <div className="mb-3 color-darkblue bold-48-56">
                                     RAG Mirsot
                                 </div>
-                                <div className={`color-yellow mb-2 semibold-32-48 ${!page && 'skeleton skeleton-text'}`}>
-                                    {page && page.home_consulting_heading[lang]}
+                                <div className='color-yellow mb-2 semibold-32-48 w-100'>
+                                    {page ? page.home_consulting_heading[lang] : (<div className="skeleton skeleton-text w-50"/>)}
                                 </div>
-                                <div className={`color-darkgrey regular-24-30 ${!page && 'skeleton skeleton-text'}`}>
-                                    {page && page.home_consulting_subheading[lang]}
+                                <div className='color-darkgrey regular-24-30 w-100'>
+                                    {page ? page.home_consulting_subheading[lang] : (
+                                        <>
+                                            <div className="skeleton skeleton-text"/>
+                                            <div className="skeleton skeleton-text w-70"/>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
                         <div className="col">
-                            <ConsultationForm />
+                            <ConsultationForm size="sm" />
                         </div>
                     </div>
                 </div>

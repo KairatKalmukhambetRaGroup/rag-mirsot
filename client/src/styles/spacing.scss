@@ -16,6 +16,9 @@
 .mb-5{
     margin-bottom: 40px;
 }
+.mb-6{
+    margin-bottom: 48px;
+}
 .mb-8{
     margin-bottom: 64px;
 }
@@ -32,6 +35,20 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.w-30{
+    width: 30%;
+    max-width: 30%;
+
+}
+.w-50{
+    width: 50%;
+    max-width: 50%;
+}
+.w-70{
+    width: 70%;
+    max-width: 70%;
 }
 .w-100{
     width: 100%;
