@@ -1,15 +1,6 @@
 import mongoose from "mongoose";
 
 const cardSchema = mongoose.Schema({
-    parentId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Page'
-    },
-    name: {
-        type: String,
-        unique: true,
-        required: true
-    },
     title:{
         ru: String,
         en: String,

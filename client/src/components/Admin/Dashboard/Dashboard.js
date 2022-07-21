@@ -22,7 +22,7 @@ const Dashboard = () => {
             let date = null;
             const arr = [];
             data.forEach(element => {
-                const elDate = new Date(element.createdAt).setHours(0,0,0,0);
+                const elDate =  new Date(element.createdAt).setHours(0,0,0,0);
                 if(date){
                     if(date === elDate){
                         c++;
@@ -37,6 +37,7 @@ const Dashboard = () => {
                 }   
             });
             arr.push({total: c, _id: date});
+            console.log(date);
             return arr.reverse();
         }
         return [];

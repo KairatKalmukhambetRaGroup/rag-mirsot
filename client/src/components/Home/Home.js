@@ -212,7 +212,7 @@ const Home = () => {
                             </div>
                             <div className="text w-100">
                                 <div className="mb-3 color-darkblue bold-48-56">
-                                    RAG Mirsot
+                                {page ? page.home_consulting_title[lang] : (<div className="skeleton skeleton-text w-50"/>)}
                                 </div>
                                 <div className='color-yellow mb-2 semibold-32-48 w-100'>
                                     {page ? page.home_consulting_heading[lang] : (<div className="skeleton skeleton-text w-50"/>)}

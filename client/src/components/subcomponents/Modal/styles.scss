@@ -1,0 +1,63 @@
+@use '../../../utilities/variables' as v;
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba($color: v.$black, $alpha: .15);
+    display: flex;
+    z-index: 1000;
+    &.hide{
+        display: none;
+    }
+    .modal-loading{
+        margin: auto;
+    }
+    .modal{
+        z-index: 1100;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 16px;
+        background: v.$white;
+        width: 30%;
+        .modal-body{
+            padding: 20px;
+
+            .modal-header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: v.$black;
+                .modal-close{
+                    right: 10px;
+                    width: 16px;
+                    height: 16px;
+                    background-color: black;
+                    cursor: pointer;
+                }
+            }
+            .modal-content{
+                padding: 16px 0;
+            }
+            .modal-footer{
+                display: flex;
+                gap: 8px;
+                justify-content: flex-end;
+                .modal-btn{
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    border-radius: 16px;
+                    color: v.$white;
+                    &.close{
+                        background: v.$dark_grey;
+                    }
+                    &.success{
+                        background: v.$green;
+                    }
+                }
+            }
+        }
+    }
+}

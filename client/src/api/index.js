@@ -11,11 +11,13 @@ API.interceptors.request.use((req) => {
 
 // PUBLIC
 export const addVisitor = (data) => API.post('/visitors', data);
+export const requestConsultation = (data) => API.post('/consultations', data);
 
 // PAGES
 export const fetchPageByName = (name) => API.get(`/pages/${name}`);
 export const fetchPages = () => API.get(`/pages`);
 export const fetchTexts = (names) => API.get(`/pages/text?names=${names}`);
+export const updateText = (data) => API.patch('/pages/text', data);
 
 // ADMIN
 export const login = (data) => API.post('/users/login', data);

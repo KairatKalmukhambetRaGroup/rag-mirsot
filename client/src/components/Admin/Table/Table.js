@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './styles.scss';
 
+const words = {
+    name: {ru: 'Имя', en: 'Name', kz: 'Аты-жөні'},
+    email: {ru: 'Электронная почта', en: 'Email', kz: 'Электрондық пошта'},
+    direction: {ru: 'Направление', en: 'Direction', kz: 'Бағыт'},
+    service: {ru: 'Услуга', en: 'Service', kz: 'Қызмет'},
+    lang: {ru: 'Язык', en: 'Language', kz: 'Тіл'},
+}
+
 const Table = ({title, data}) => {
+    const {lang} = useSelector((state)=>state.global)
     const [keys, setKeys] = useState([]);
     useEffect(()=>{
         if(data && data.length > 0){
@@ -22,7 +32,7 @@ const Table = ({title, data}) => {
                     <tr>
                         <th>#</th>
                         {keys && keys.length>0 && keys.map((k, i) => (
-                            <th key={i}>{k}</th>
+                            <th key={i}>{words[k][lang]}</th>
                         ))}
                     </tr>
                 </thead>

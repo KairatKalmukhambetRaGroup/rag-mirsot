@@ -14,6 +14,7 @@ export const FETCH_PAGE = 'FETCH_PAGE';
 export const FETCH_PAGES = 'FETCH_PAGES';
 export const CLEAR_PAGE = 'CLEAR_PAGE';
 export const FETCH_TEXTS = 'FETCH_TEXTS';
+export const UPDATE_TEXT = 'UPDATE_TEXT';
 
 
 // ADMIN

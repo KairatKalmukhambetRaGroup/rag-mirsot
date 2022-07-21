@@ -4,6 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { getPages } from "../../../actions/page";
 
 import "./styles.scss";
+
+const menu = {
+    main: {ru: 'Основное', en: 'General', kz: 'Негізгі'},
+    home: {ru: 'Главная страница', en: 'Main page', kz: 'Басты бет'},
+    directions: {ru: 'Направления', en: 'Directions', kz: 'Бағыттар'},
+    services: {ru: 'Услуги', en: 'Services', kz: 'Қызметтер'},
+    about: {ru: 'О нас', en: 'About us', kz: 'Біз туралы'},
+    contacts: {ru: 'Контакты', en: 'Contacts', kz: 'Байланыстар'},
+    logout: {ru: 'Выйти', en: 'Logout', kz: 'Шығу'}
+};
+
 const Menu = () => {
     const dispatch = useDispatch();
     const {pages} = useSelector((state) => state.pages);
@@ -29,62 +40,55 @@ const Menu = () => {
             <ul className="subtitles">
                 <li>
                     <a href="/admin">
-                        Основное
+                        {menu.main[lang]}
                     </a>
                 </li>
                 <li>
                     <a href="/admin/home">
-                        Главная страница
+                        {menu.home[lang]}
                     </a>
                 </li>
-                {pages ? pages.map((page, key)=>{
-                    if(page.subpages.length > 0) 
-                        return (
-                            <li className="dropdown" key={key}>
-                                <a className="dropbtn">
-                                    {page.title[lang]}
-                                </a>
-                                <ul className="dropcontent">
-                                    {page.subpages.map((subpage, subkey) => (
-                                        <li key={`${key}-${subkey}`}>
-                                            <a href={subpage.name}>{subpage.title[lang]}</a>
+                <li className="dropdown">
+                    <a className="dropbtn">{menu.directions[lang]}</a>
+                    {pages && pages.map((page, i)=>{
+                        if(page.subpages.length > 0 && page.name === 'directions')
+                            return ( 
+                                <ul className="dropcontent" key={i}>
+                                    {page.subpages.map((subpage, j) => (
+                                        <li key={`${j}`}>
+                                            <a href={`/admin/${page.name}/${subpage.name}`}>{subpage.title[lang]}</a>
                                         </li>
                                     ))}
                                 </ul>
-                            </li>
-                        );
-                    return (
-                        <li key={key}>
-                            <a href={page.name}>
-                                {page.title[lang]}
-                            </a>
-                        </li>
-                    )
-                }) : (
-                    <>
-                        <li>
-                            <a href="directions">
-                                Направления
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services">
-                                Услуги
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about">
-                                О нас
-                            </a>
-                        </li>
-                        <li>
-                            <a href="contacts">
-                                Контакты и языки
-                            </a>
-                        </li>
-                    </>
-                )}
-                <li onClick={logout}>Выйти</li>
+                            )
+                    })}
+                </li>
+                <li className="dropdown">
+                    <a className="dropbtn">{menu.services[lang]}</a>
+                    {pages && pages.map((page, i)=>{
+                        if(page.subpages.length > 0 && page.name === 'services')
+                            return ( 
+                                <ul className="dropcontent" key={i}>
+                                    {page.subpages.map((subpage, j) => (
+                                        <li key={`${j}`}>
+                                            <a href={`/admin/${page.name}/${subpage.name}`}>{subpage.title[lang]}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )
+                    })}
+                </li>
+                <li>
+                    <a href="/admin/about">
+                        {menu.about[lang]}
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/contacts">  
+                        {menu.contacts[lang]}
+                    </a>
+                </li>
+                <li onClick={logout}>{menu.logout[lang]}</li>
             </ul>
         </div>
     );

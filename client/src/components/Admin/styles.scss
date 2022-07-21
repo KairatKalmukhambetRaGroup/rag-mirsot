@@ -1,3 +1,5 @@
+@use '../../utilities/variables' as v;
+
 #admin{
     display: grid;
     grid-template-columns: 256px auto;
@@ -19,5 +21,24 @@
         margin-right: 32px;
         grid-area: content;
         margin-bottom: 112px;
+    }
+
+    .block-title{
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 32px;
+        color: v.$black;
+        padding-bottom: 32px;
+    }
+
+    hr{
+        margin: 48px 0;
+        background: v.$white;
+        height: 1px;
+        border: none;
+    }
+
+    #home{
+
     }
 }

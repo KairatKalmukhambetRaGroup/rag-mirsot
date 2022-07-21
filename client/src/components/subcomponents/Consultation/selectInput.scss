@@ -1,0 +1,55 @@
+@use '../../../utilities/variables' as v;
+
+.custom-select{
+    position: relative;
+    .select-arrow-down{
+        cursor: pointer;
+        content: url('../../../utilities/icons/arrowdown-dark.svg');
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 12px;
+    }
+    input{
+        cursor: pointer;
+        z-index: 0;
+    }
+    .options{
+        z-index: 1;
+        display: none;
+        position: absolute;
+        overflow: hidden;
+        background-color: v.$white;
+        width: 100%;
+        border-radius: 8px;
+        .option{
+            padding: 8px 16px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+            cursor: pointer;
+            &.active{
+                background-color: v.$dark-grey;
+                color: v.$white;
+            }
+        }
+        &:hover{
+            .option{
+                &.active{
+                    background-color: initial;
+                    color: inherit;
+                }
+                &:hover{
+                    background-color: v.$dark-grey;
+                    color: v.$white;
+                }
+            }
+        }
+    }
+    .options:hover, input:focus-visible + .options{
+        display: block;
+    }
+}

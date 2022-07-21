@@ -30,7 +30,7 @@ const Subpage = ({parent}) => {
     
     return (
         <div id="subpage" className={parent}>
-            <Breadcrumb color="white" />
+            <Breadcrumb color="white" page={parent} subpage={page ? page : null} />
             <div className="block" id="subpage-top">
                 <div className="container">
                     <div className={`icon-container mb-4 ${!page && 'skeleton'}`}>
@@ -43,7 +43,7 @@ const Subpage = ({parent}) => {
                             {(page && page.title) ? page.title[lang] : (<div className="skeleton skeleton-text"/>)}
                         </div>
                         <div className="description regular-24-32 color-black w-100">
-                            {(page && page.description) ? page.description[lang] : (
+                            {(page && page[`description_${pagename}`]) ? page[`description_${pagename}`][lang] : (
                                 <>
                                     <div className="skeleton skeleton-text"/>
                                     <div className="skeleton skeleton-text"/>
@@ -71,7 +71,7 @@ const Subpage = ({parent}) => {
                             </>
                         )
                         : (
-                            <div className="carousel-slide skeleton"/>
+                            <div className="carousel-slide active skeleton"/>
                         )}
 
                     </div>

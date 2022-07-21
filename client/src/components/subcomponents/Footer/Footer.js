@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPages } from "../../../actions/page";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import './styles.scss';
 
+const pages = {
+    home: {ru: 'Главная страница', en: 'Main page', kz: 'Басты бет'},
+    directions: {ru: 'Направления', en: 'Directions', kz: 'Бағыттар'},
+    services: {ru: 'Услуги', en: 'Services', kz: 'Қызметтер'},
+    about: {ru: 'О нас', en: 'About us', kz: 'Біз туралы'}
+};
+
 const Footer = () => {
-    const {pages} = useSelector((state) => state.pages);
     const {lang} = useSelector((state) => state.global);
-
-
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-        dispatch(getPages());
-    }, [dispatch])
-
     return (
         <div id="footer">
             <div className="container">
@@ -37,31 +34,26 @@ const Footer = () => {
                     </div>
                     <div className="col">
                         <ul className="sitemap">
-                            {pages ? pages.map((page, key)=>(
-                                <li key={key}> 
-                                    <a href={`/${page.name === 'home' ? '' : page.name}`}>
-                                        {page.title[lang]}
-                                    </a>
-                                </li>
-                            )) : (
-                                <>
-                                    <li>
-                                        <div className="skeleton skeleton-text__body"/>
-                                    </li>
-                                    <li>
-                                        <div className="skeleton skeleton-text__body"/>
-                                    </li>
-                                    <li>
-                                        <div className="skeleton skeleton-text__body"/>
-                                    </li>
-                                    <li>
-                                        <div className="skeleton skeleton-text__body"/>
-                                    </li>
-                                    <li>
-                                        <div className="skeleton skeleton-text__body"/>
-                                    </li>
-                                </>
-                            )}
+                            <li> 
+                                <a href='/'>
+                                    {pages.home[lang]}
+                                </a>
+                            </li>
+                            <li> 
+                                <a href='/#home-directions'>
+                                    {pages.directions[lang]}
+                                </a>
+                            </li>
+                            <li> 
+                                <a href='/#home-services'>
+                                    {pages.services[lang]}
+                                </a>
+                            </li>
+                            <li> 
+                                <a href='/about'>
+                                    {pages.about[lang]}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div className="col">

@@ -8,11 +8,18 @@ import { LANG } from "../../../constants/actionTypes";
 import { addVisitor } from "../../../actions/visitor";
 import { getPages } from "../../../actions/page";
 
+const pages = {
+    directions: {ru: 'Направления', en: 'Directions', kz: 'Бағыттар'},
+    services: {ru: 'Услуги', en: 'Services', kz: 'Қызметтер'},
+    about: {ru: 'О нас', en: 'About us', kz: 'Біз туралы'},
+    contacts: {ru: 'Контакты', en: 'Contacts', kz: 'Байланыстар'},
+};
+
 const Header = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     
-    const {pages} = useSelector((state) => state.pages);
+    const {pages:pgs} = useSelector((state) => state.pages);
     const {lang} = useSelector((state) => state.global);
     
     const [blocks, setBlocks] = useState([]);
@@ -28,8 +35,6 @@ const Header = () => {
     useEffect(()=>{dispatch(getPages())}, [dispatch]);
 
     // CHANGE HEADER STYLING
-
-
     const handleScroll = () => {
         const y = window.scrollY + 60;
         if(blocks.length>0){
@@ -115,55 +120,64 @@ const Header = () => {
                     <a className="brand" href="/"><i className="logo"></i></a>
                     <div className="collapse">
                         <ul id="page_titles">
-                            {pages ? pages.map((page, key)=>{
-                                if(page.showOnHeader === true){
-                                    if(page.subpages.length > 0) 
-                                        return (
-                                            <li className="dropdown" key={key}>
-                                                <a className="dropbtn">{page.title[lang]}</a>
-                                                <ul className="dropcontent">
-                                                    {page.subpages.map((subpage, subkey) => (
-                                                        <li key={`${key}-${subkey}`}>
-                                                            <a href={`/${page.name}/${subpage.name}`}>{subpage.title[lang]}</a>
+                            <li className="dropdown">
+                                <a className="dropbtn">{pages.directions[lang]}</a>
+                                    {pgs && pgs.map((pg, i)=>{
+                                        if(pg.subpages.length > 0 && pg.name === 'directions')
+                                            return ( 
+                                                <ul className="dropcontent" key={i}>
+                                                    {pg.subpages.map((subpage, j) => (
+                                                        <li key={`${j}`}>
+                                                            <a href={`/${pg.name}/${subpage.name}`}>{subpage.title[lang]}</a>
                                                         </li>
                                                     ))}
                                                 </ul>
-                                            </li>
-                                        );
-                                    return (
-                                        <li key={key}>
-                                            <a href={page.name === 'contacts' ? '#footer' : `/${page.name}`}>{page.title[lang]}</a>
-                                        </li>
-                                    )
-                                }
-                            }) : (
-                                <>
-                                    <li><div className="skeleton skeleton-text"/></li>
-                                    <li><div className="skeleton skeleton-text"/></li>
-                                    <li><div className="skeleton skeleton-text"/></li>                           
-                                    <li><div className="skeleton skeleton-text"/></li>
-                                </>
-                            )}
+                                            )
+                                        
+                                    })}
+                            </li>
+                            <li className="dropdown">
+                                <a className="dropbtn">{pages.services[lang]}</a>
+                                    {pgs && pgs.map((pg, i)=>{
+                                        if(pg.subpages.length > 0 && pg.name === 'services')
+                                            return ( 
+                                                <ul className="dropcontent" key={i}>
+                                                    {pg.subpages.map((subpage, j) => (
+                                                        <li key={`${j}`}>
+                                                            <a href={`/${pg.name}/${subpage.name}`}>{subpage.title[lang]}</a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )
+                                        
+                                    })}
+                            </li>
+                            <li>
+                                <a href='/about'>{pages.about[lang]}</a>
+                            </li>
+                            <li>
+                                <a href='#footer'>{pages.contacts[lang]}</a>
+                            </li>
                         </ul>
                         <div id="language" className="dropdown">
                                 <a className="dropbtn">
                                     {((!lang || lang==='ru') && (<>
-                                        <i className="lang-ru"></i> RU
+                                        <i className="lang-ru"></i>RU
                                     </>)) || (lang==='en' && (<>
-                                        <i className="lang-en"></i> EN
+                                        <i className="lang-en"></i>EN
                                     </>)) || (lang==='kz' && (<>
-                                        <i className="lang-kz"></i> ҚАЗ
+                                        <i className="lang-kz"></i>ҚАЗ
                                     </>))}
                                 </a>
                                 <ul className="dropcontent">
                                     <li data-lang="en" className={lang === 'en' ? 'hidden' : ''} onClick={changeLanguage}>
-                                        <i data-lang="en" className="lang-en"></i> EN
+                                        <i data-lang="en" className="lang-en"></i>EN
                                     </li>
                                     <li data-lang="ru" className={(!lang || lang === 'ru') ? 'hidden' : ''} onClick={changeLanguage}>
-                                        <i data-lang="ru" className="lang-ru"></i> RU
+                                        <i data-lang="ru" className="lang-ru"></i>RU
                                     </li>
                                     <li data-lang="kz" className={lang === 'kz' ? 'hidden' : ''} onClick={changeLanguage}>
-                                        <i data-lang="kz" className="lang-kz"></i> ҚАЗ
+                                        <i data-lang="kz" className="lang-kz"></i>ҚАЗ
                                     </li>
                                 </ul>
                         </div>

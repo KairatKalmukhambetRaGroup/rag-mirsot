@@ -1,3 +1,5 @@
+@import '../utilities/adaptive';
+
 .bold-48-56, .heading-bold-48-56{
     margin: 0;
     padding-bottom: 0;
@@ -19,12 +21,21 @@
     font-size: 32px;
     line-height: 40px;
 }
-.semibold-32-48, .title-semibold-32-48{
+.semibold-32-48{
     padding: 0;
     margin: 0;
     font-weight: 600;
     font-size: 32px;
     line-height: 38px;
+}
+.semibold-lg-32-48{
+    @include _lg{
+        padding: 0;
+        margin: 0;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 38px;
+    }
 }
 .semibold-24-32, .title-semibold-24-32{
     padding: 0;
@@ -61,6 +72,7 @@
     font-size: 22px;
     line-height: 28px;
 }
+
 .regular-20-28{
     margin: 0;
     padding: 0;
@@ -81,6 +93,13 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 28px;
+}
+.regular-16-24{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
 }
 .regular-16-28{
     margin: 0;
@@ -107,4 +126,24 @@
 
 .text-center{
     text-align: center;
+}
+
+// LG
+.semibold-lg-32-48{
+    @include _lg{
+        padding: 0;
+        margin: 0;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 38px;
+    }
+}
+.regular-lg-22-28{
+    @include _lg{
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 28px;
+    }
 }

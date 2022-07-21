@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from "url";
 import Text from '../models/page/text.js';
 import Image from '../models/page/image.js';
+import Card from '../models/page/card.js';
 
 export const createPage = async (req, res) => {
     try {
@@ -100,6 +101,9 @@ export const getPageByName = async (req, res) => {
                 arr.services.push({_id: sub._id, name: sub.name, title: sub.title, image: img.src});
             }
         }
+        if(name === 'about'){
+            arr.cards = await Card.find();
+        }
 
         if(page.parent){
             arr.siblings = [];
@@ -141,6 +145,17 @@ export const createText = async (req, res) => {
     }
 }
 
+export const updateText = async (req, res) => {
+    const {_id} = req.body;
+    try {
+        const newText = await Text.findByIdAndUpdate(_id, req.body);
+        return res.status(201).json(newText);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."}); 
+    }
+}
+
 export const getTextByNames = async (req, res) => {
     const {names} = req.query;
     try {
@@ -168,5 +183,25 @@ export const createImage = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({error: "Something went wrong."});
+    }
+}
+
+export const createCard = async (req, res) => {
+    try {
+        const card = await Card.create(req.body);
+        return res.json(card);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."});
+    }
+}
+export const updateCard = async (req, res) => {
+    const {_id} = req.body;
+    try {
+        const newCard = await Card.findByIdAndUpdate(_id, req.body);
+        return res.status(201).json(newCard);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error: "Something went wrong."}); 
     }
 }

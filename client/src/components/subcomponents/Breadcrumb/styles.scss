@@ -6,8 +6,10 @@
         .breadcrumbs{
             background-color: #F7F7F7;
             color: v.$dark_grey;
-            &:last-of-type{
-                color: v.$black;
+            .breadcrumb{
+                &:last-of-type{
+                    color: v.$black;
+                }
             }
         }
     }
@@ -16,8 +18,10 @@
         .breadcrumbs{
             background-color: rgba($color: #F7F7F7, $alpha: .05);
             color: v.$light_grey;
-            &:last-of-type{
-                color: v.$white;
+            .breadcrumb{
+                &:last-of-type{
+                    color: v.$white;
+                }
             }
         }
     }
@@ -30,6 +34,7 @@
         .breadcrumbs-content{
             display: flex;
             flex-wrap: wrap;
+            
         }
     }
 }
