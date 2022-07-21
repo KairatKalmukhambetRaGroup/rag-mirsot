@@ -4,10 +4,8 @@ import { useParams } from "react-router-dom";
 import { getPageByName, getTexts } from "../../actions/page";
 import Breadcrumb from "../subcomponents/Breadcrumb/Breadcrumb";
 import ConsultationForm from "../subcomponents/Consultation/ConsultationForm";
-import dotenv from "dotenv";
 
 import './styles.scss';
-dotenv.config();
 
 const Subpage = ({parent}) => {
     const dispatch = useDispatch();
@@ -37,7 +35,7 @@ const Subpage = ({parent}) => {
                 <div className="container">
                     <div className={`icon-container mb-4 ${!page && 'skeleton'}`}>
                         {(page && page.images) && (
-                            <img src={`${process.env.HOST}images/${page.images[0].src}`} />
+                            <img src={`http://89.219.32.45:5000/images/${page.images[0].src}`} />
                         )}
                     </div>
                     <div className="d-flex flex-column gap-1 mb-6">
@@ -60,7 +58,7 @@ const Subpage = ({parent}) => {
                             <>
                                 {page.images.slice(1).map((image, key) => (
                                     <div key={key} className={`carousel-slide ${key === currentSlide ? 'active' : ''}`} > 
-                                        <img src={`${process.env.HOST}images/${image.src}`} />
+                                        <img src={`http://89.219.32.45:5000/images/${image.src}`} />
                                     </div>
                                 ))}
                                 <span id="carousel-left" onClick={(e)=>{e.preventDefault(); setSlide(currentSlide-1)}}/>
@@ -96,7 +94,7 @@ const Subpage = ({parent}) => {
                                 <div className="icon-card color-lightblue">
                                     <div className="d-flex">
                                         <div className="icon-cardimage">
-                                            <img src={`${process.env.HOST}images/${sub.image}`} />
+                                            <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
                                         </div>
                                     </div>
                                     <div className="icon-cardtitle color-darkblue semibold-24-32">

@@ -4,8 +4,6 @@ import { getPageByName } from "../../actions/page";
 import ConsultationForm from "../subcomponents/Consultation/ConsultationForm";
 
 import './styles.scss';
-import dotenv from "dotenv";
-dotenv.config();
 const Home = () => {
     const { page } = useSelector((state) => state.pages);
     const { lang } = useSelector((state) => state.global);
@@ -23,7 +21,7 @@ const Home = () => {
                             {page && page.images && page.images.map((img, key)=>(
                                 <div className="slide" key={key}>
                                     <div className="image-container">
-                                        <img src={`${process.env.HOST}images/${img.src}`} />
+                                        <img src={`http://89.219.32.45:5000/images/${img.src}`} />
                                     </div>
                                 </div>
                             ))}
@@ -70,7 +68,7 @@ const Home = () => {
                                 <div className="icon-card directions color-lightblue">
                                     <div className="d-flex">
                                         <div className="icon-cardimage">
-                                            <img src={`${process.env.HOST}images/${sub.image}`} />
+                                            <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
                                         </div>
                                     </div>
                                     <div className="icon-cardtitle color-lightblue">
@@ -146,7 +144,7 @@ const Home = () => {
                                 <div className="icon-card services color-lightblue">
                                     <div className="d-flex">
                                         <div className="icon-cardimage">
-                                            <img src={`${process.env.HOST}images/${sub.image}`} />
+                                            <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
                                         </div>
                                     </div>
                                     <div className="icon-cardtitle color-darkblue">

@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 
 import './styles.scss';
-import dotenv from "dotenv";
-dotenv.config();
 const Block = ({block, editableonly = false}) => {
     const {lang} = useSelector((state) => state.global);
     const navigate = useNavigate();
@@ -67,7 +65,7 @@ const Block = ({block, editableonly = false}) => {
         case 'image': 
             return (
                 <div className="image-container">
-                    <img src={`${process.env.HOST}images/${block.src}`} />
+                    <img src={`http://89.219.32.45:5000/images/${block.src}`} />
                 </div>
             );
             
