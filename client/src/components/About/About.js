@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { getPageByName } from '../../actions/page';
+import dotenv from "dotenv";
 
 import Breadcrumb from '../subcomponents/Breadcrumb/Breadcrumb';
 
 import './styles.scss';
+dotenv.config();
 
 const About = () => {
     const dispatch = useDispatch();
@@ -112,7 +114,7 @@ const About = () => {
                             <div className='staff-image'>
                                 <div className='bg'></div>
                                 <div className='profile-image'>
-                                    <img src={page && `http://localhost:5000/images/${page.images[0].src}`} className={`${!page && 'skeleton'}`} />
+                                    <img src={page && `${process.env.HOST}images/${page.images[0].src}`} className={`${!page && 'skeleton'}`} />
                                 </div>
                             </div>
                             <div className='staff-text d-flex flex-column gap-2'>
@@ -151,7 +153,7 @@ const About = () => {
                             <div className='staff-image'>
                                 <div className='bg'></div>
                                 <div className='profile-image'>
-                                    <img src={page && `http://localhost:5000/images/${page.images[1].src}`} className={`${!page && 'skeleton'}`} />
+                                    <img src={page && `${process.env.HOST}images/${page.images[1].src}`} className={`${!page && 'skeleton'}`} />
                                 </div>
                             </div>
                             <div className='staff-text d-flex flex-column gap-2'>
@@ -196,7 +198,7 @@ const About = () => {
                     <div className='images mt-6'>
                         {page && page.images.map((image,key)=> key>1 && (
                             <div className='image-container' key={key}>
-                                <img src={`http://localhost:5000/images/${image.src}`} />
+                                <img src={`${process.env.HOST}images/${image.src}`} />
                             </div>
                         ))}
                     </div>

@@ -1,8 +1,10 @@
 import axios from 'axios';
+import dotenv from "dotenv";
+dotenv.config();
+
 
 // const API = axios.create({ baseURL: 'http://localhost:5000/', validateStatus: function (status) { return true } });
-const API = axios.create({ baseURL: 'http://89.219.32.45:5000/', validateStatus: function (status) { return true } });
-http://89.219.32.45/
+const API = axios.create({ baseURL: process.env.HOST, validateStatus: function (status) { return true } });
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem('profile')) {
