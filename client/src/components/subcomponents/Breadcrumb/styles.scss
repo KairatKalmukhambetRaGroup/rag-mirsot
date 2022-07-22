@@ -1,4 +1,5 @@
 @use '../../../utilities/variables' as v;
+@import '../../../utilities/adaptive';
 
 #breadcrumb{
     &.theme-white{
@@ -9,6 +10,8 @@
             .breadcrumb{
                 &:last-of-type{
                     color: v.$black;
+                    font-weight: 600;
+
                 }
             }
         }
@@ -21,20 +24,27 @@
             .breadcrumb{
                 &:last-of-type{
                     color: v.$white;
+                    font-weight: 600;
                 }
             }
         }
     }
     .top{
         width: 100%;
-        height: 128px;
+        height: 88px;
+        @include _md{
+            height: 128px;
+        }
     }
     .breadcrumbs{
-        padding: 32px 0;
+        padding: 16px 0;
+        @include _lg{
+            padding: 32px 0;
+        }
         .breadcrumbs-content{
             display: flex;
             flex-wrap: wrap;
-            
+            gap: 16px;
         }
     }
 }

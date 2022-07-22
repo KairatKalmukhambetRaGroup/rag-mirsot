@@ -4,6 +4,11 @@ import { getPageByName } from "../../actions/page";
 import ConsultationForm from "../subcomponents/Consultation/ConsultationForm";
 
 import './styles.scss';
+
+const words = {
+    consult: {ru: 'Проконсультироваться', en: 'Consult', kz: 'Кеңесу'}
+}
+
 const Home = () => {
     const { page } = useSelector((state) => state.pages);
     const { lang } = useSelector((state) => state.global);
@@ -11,6 +16,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(getPageByName('home'));
     }, [dispatch]);
+
 
     return (
         <div id="home">
@@ -32,17 +38,17 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="mb-12 mt-auto">
+                    <div className="mb-7 mb-lg-12 mt-auto">
                         <div className="d-flex flex-column gap-1 mb-3">
-                            <div className={`bold-48-56 color-white ${!page && 'skeleton skeleton-text'}`}>
-                                {page && page.home_heading[lang]}
+                            <div className='bold-24-28 bold-lg-48-56 color-white w-100'>
+                                {page ? page.home_heading[lang] : (<div className="skeleton skeleton-text w-70"/>)}
                             </div>
-                            <div className={`regular-24-30 color-lightgrey ${!page && 'skeleton skeleton-text'}`}>
-                                {page && page.home_subheading[lang]}
+                            <div className='regular-16-20 regular-lg-24-30 color-lightgrey w-100'>
+                                {page ? page.home_subheading[lang] : (<div className="skeleton skeleton-text"/>) }
                             </div>
                         </div>
-                        <a href="#consulting" className="button-48 bg-oceanblue color-white regular-16-16">
-                            Проконсультироваться
+                        <a href="#consulting" className='button-48 bg-oceanblue color-white regular-16-16'>
+                            {words.consult[lang]}
                         </a>
                     </div>
                 </div>
@@ -50,10 +56,10 @@ const Home = () => {
             <div className="block" id="home-directions">
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
-                        <div className='semibold-32-48 color-white pb-8 w-100'>
+                        <div className='semibold-24-32 semibold-lg-32-48 color-white pb-8 w-100'>
                             {page ? page.home_directions_heading[lang] : (<div className="skeleton skeleton-text w-30" />)}
                         </div>
-                        <div className='regular-22-28 color-lightgrey w-100'>
+                        <div className='regular-16-20 regular-lg-22-28 color-lightgrey w-100'>
                             {page ? page.home_directions_subheading[lang] : (
                                 <>
                                 <div className="skeleton skeleton-text"/>
@@ -126,10 +132,10 @@ const Home = () => {
             <div className="block" id="home-services">
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
-                        <div className='semibold-32-48 color-black pb-8 w-100'>
+                        <div className='semibold-24-32 semibold-lg-32-48 color-black pb-8 w-100'>
                             {page ? page.home_services_heading[lang] : (<div className="skeleton skeleton-text w-30" />)}
                         </div>
-                        <div className='regular-22-28 color-darkgrey  w-100'>
+                        <div className='regular-16-20 regular-lg-22-28 color-darkgrey  w-100'>
                             {page ? page.home_services_subheading[lang] : (
                                 <>
                                     <div className="skeleton skeleton-text"/>
@@ -201,7 +207,7 @@ const Home = () => {
             </div>
             <div className="block" id="consulting">
                 <div className="container">
-                    <div className="semibold-32-48 color-darkblue">
+                    <div className="semibold-24-32 semibold-lg-32-48 color-darkblue">
                         Консультация
                     </div>
                     <div className="row-1 row-lg-2">
@@ -210,13 +216,13 @@ const Home = () => {
                                 <i></i>
                             </div>
                             <div className="text w-100">
-                                <div className="mb-3 color-darkblue bold-48-56">
+                                <div className="mb-3 color-darkblue bold-40-48 bold-lg-48-56">
                                 {page ? page.home_consulting_title[lang] : (<div className="skeleton skeleton-text w-50"/>)}
                                 </div>
-                                <div className='color-yellow mb-2 semibold-32-48 w-100'>
+                                <div className='color-yellow mb-2 semibold-24-32 semibold-lg-32-48 w-100'>
                                     {page ? page.home_consulting_heading[lang] : (<div className="skeleton skeleton-text w-50"/>)}
                                 </div>
-                                <div className='color-darkgrey regular-24-30 w-100'>
+                                <div className='color-darkgrey regular-16-20 regular-lg-24-30 w-100'>
                                     {page ? page.home_consulting_subheading[lang] : (
                                         <>
                                             <div className="skeleton skeleton-text"/>

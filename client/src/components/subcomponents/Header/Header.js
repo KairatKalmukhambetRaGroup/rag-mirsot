@@ -113,12 +113,20 @@ const Header = () => {
         }
     }, [location])
 
+    const [showMenu, setShowMenu] = useState(false);
+
+    const openMenu = (e) => {
+        e.preventDefault();
+        setShowMenu(!showMenu);
+    }
+
+
     return (
         <div id="header" className={`theme-${theme}`}>
             <div className="container">
                 <div>
                     <a className="brand" href="/"><i className="logo"></i></a>
-                    <div className="collapse">
+                    <div className={`collapse ${showMenu ? 'active' : ''}`}>
                         <ul id="page_titles">
                             <li className="dropdown">
                                 <a className="dropbtn">{pages.directions[lang]}</a>
@@ -162,11 +170,11 @@ const Header = () => {
                         <div id="language" className="dropdown">
                                 <a className="dropbtn">
                                     {((!lang || lang==='ru') && (<>
-                                        <i className="lang-ru"></i>RU
+                                        RU
                                     </>)) || (lang==='en' && (<>
-                                        <i className="lang-en"></i>EN
+                                        EN
                                     </>)) || (lang==='kz' && (<>
-                                        <i className="lang-kz"></i>ҚАЗ
+                                        ҚАЗ
                                     </>))}
                                 </a>
                                 <ul className="dropcontent">
@@ -182,7 +190,7 @@ const Header = () => {
                                 </ul>
                         </div>
                     </div>
-                    <div id="menu-hamburger"><i></i></div>
+                    <div id="menu-hamburger"  className={showMenu ? 'active' : ''} onClick={openMenu}><i></i></div>
                 </div>
             </div>
         </div>

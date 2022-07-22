@@ -39,10 +39,10 @@ const Subpage = ({parent}) => {
                         )}
                     </div>
                     <div className="d-flex flex-column gap-1 mb-6">
-                        <div className="semibold-32-40 color-darkblue w-30">
+                        <div className="semibold-24-32 semibold-lg-32-40 color-darkblue w-30">
                             {(page && page.title) ? page.title[lang] : (<div className="skeleton skeleton-text"/>)}
                         </div>
-                        <div className="description regular-24-32 color-black w-100">
+                        <div className="description regular-16-24 regular-lg-24-32 color-black w-100">
                             {(page && page[`description_${pagename}`]) ? page[`description_${pagename}`][lang] : (
                                 <>
                                     <div className="skeleton skeleton-text"/>
@@ -81,10 +81,10 @@ const Subpage = ({parent}) => {
             <div className="block" id="siblings">
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
-                        <div className='semibold-32-48 color-darkblue pb-8'>
+                        <div className='semibold-24-32 semibold-lg-32-48 color-darkblue pb-8'>
                             {texts ? (parent === 'directions' ? texts.home_directions_heading[lang] : texts.home_services_heading[lang]) : (<div className="skeleton skeleton-text" />)}
                         </div>
-                        <div className='regular-22-28 color-darkgrey'>
+                        <div className='regular-16-20 regular-lg-22-28 color-darkgrey'>
                             {texts ? (parent === 'directions' ? texts.home_directions_subheading[lang] : texts.home_services_subheading[lang]) : (<div className="skeleton skeleton-text" />)}
                         </div>
                     </div>
@@ -97,7 +97,7 @@ const Subpage = ({parent}) => {
                                             <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
                                         </div>
                                     </div>
-                                    <div className="icon-cardtitle color-darkblue semibold-24-32">
+                                    <div className="icon-cardtitle color-darkblue">
                                         {sub.title[lang]}
                                     </div>
                                 </div>

@@ -40,11 +40,15 @@
             }
             .symbols-visual{
                 display: flex;
+                padding-top: 40px;
+                padding-bottom: 48px;
                 i{
+                    width: 100%;
+                    max-width: 100%;
                     margin: auto;
                     content: url("../../utilities/icons/bg-symbols-box.svg");
                 }
-                @include _xl{
+                @include _lg{
                     margin-left: -40px;
                 }
             }

@@ -4,9 +4,20 @@
 #about{
     #about-heading{
         background-color: v.$dark_blue;
-        height: 520px;
+        padding: 96px 0;
+        @include _lg{
+            padding: 80px 0;
+        }
+        .row-1{
+            gap: 80px;
+            @include _lg{
+                gap: 0;
+            }
+        }
         #about-symbol{
-            margin-right: 26px;
+            @include _lg{
+                margin-right: 26px;
+            }
             i{
                 display: block;
                 aspect-ratio: 1/1;
@@ -18,9 +29,9 @@
     #about-cards{
         background-color: v.$dark_blue;
         padding: 80px 0;
-        overflow: scroll;
         .cards{
             gap: 24px;
+            display: flex;
             flex-direction: column;
             position: relative;
             align-items: stretch;
@@ -31,6 +42,7 @@
                 padding: 20px;
                 background: rgba($color: v.$ocean_blue, $alpha: .15);
                 border-radius: 24px;
+                min-width: 280px;
                 .card-title{
                     color: v.$yellow;
                     padding-bottom: 24px;
@@ -48,7 +60,8 @@
                 }
             }
         }
-        @include _lg{
+        @include _md{
+            overflow: scroll;
             flex-wrap: nowrap;
             overflow-x: visible;
             -ms-overflow-style: none;
@@ -57,10 +70,10 @@
                 display: none;
             }
             .cards{
-
                 gap: 32px;
                 flex-direction: row;
                 .card{
+                    width: 50%;
                     min-width: 530px;
                     padding: 40px;
                     
@@ -86,8 +99,12 @@
 
                 .staff-image{
                     padding: 72px;
-                    padding-left: 0;
                     position: relative;
+                    margin: 0 auto;
+                    @include _lg{
+                        padding-left: 0;
+                        margin: 0;
+                    }
                     .bg{
                         border-radius: 0px 96px 96px 0px;
                         position: absolute;
@@ -98,6 +115,8 @@
                         background-color: rgba($color: v.$ocean_blue, $alpha: .15);
                     }
                     .profile-image{
+                        position: relative;
+                        z-index: 1;
                         width: 320px;
                         height: 320px;
                         overflow: hidden;
@@ -115,12 +134,9 @@
                     
                 }
                 &:nth-of-type(2){
-                    @include _lg{
-                        flex-direction: row-reverse;
-                    }
                     .staff-image{
                         padding: 72px;
-                        padding-right: 0;
+                        // padding-right: 0;
                         .bg{
                             border-radius:96px 0 0 96px;
                             left: 0;
@@ -128,6 +144,12 @@
                         .profile-image{
                             border-radius: 64px;
                             border-bottom-right-radius: 0;
+                        }
+                    }
+                    @include _lg{
+                        flex-direction: row-reverse;
+                        .staff-image{
+                            padding-right: 0;
                         }
                     }
                 }
@@ -156,8 +178,11 @@
         padding: 80px 0;
         .images{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             grid-gap: 16px;
+            @include _lg{
+                grid-template-columns: repeat(4, 1fr);
+            }
             .image-container{
                 &:first-of-type{
                     grid-column-start: 1;

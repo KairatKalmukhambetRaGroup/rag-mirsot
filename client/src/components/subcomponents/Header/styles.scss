@@ -7,7 +7,12 @@
         color: inherit;
     }
     position: fixed;
-    top: 24px;
+    // top: 16px;
+    padding-top: 16px;
+    @include _md{
+        padding-top: 24px;
+        // top: 24px;
+    }
     width: 100%;
     display: flex;
     z-index: 1000;
@@ -17,8 +22,12 @@
         border: 1px solid rgba(233, 240, 252, 0.1);
         backdrop-filter: blur(24px);
         width: 100%;
-        height: 72px;
-        padding: 0 24px;
+        height: 48px;
+        padding: 0 16px;
+        @include _md{
+            height: 72px;
+            padding: 0 24px;
+        }
         box-sizing: border-box;
         margin: 0 auto;
         border-radius: 16px;
@@ -28,6 +37,69 @@
             width: 100%;
             &.active{
                 display: flex;
+                flex-direction: column;
+                background-color: v.$dark_blue;
+                position: absolute;
+                top: -16px;
+                right: -16px;
+                box-sizing: border-box;
+                padding: 40px 24px;
+                // right: 100%;
+                height: 100vh;
+                width: calc(100% + 16px);
+                #page_titles{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+                #language{
+                    margin-top: 24px;
+
+                }
+                .dropdown{
+                    .dropbtn{
+                        display: flex;
+                        gap: 8px;
+                        &::after{
+                            transition: transform .2s linear;
+                            height: 20px;
+                            content: url('../../../utilities/icons/arrowdown.svg');
+                        }
+                    }
+                    .dropcontent{
+                        cursor: pointer;
+                        border-top: 1px solid #E9F0FC1A;
+                        margin-top: 16px;
+                        color: v.$white;
+                        display: none;
+                        overflow: hidden;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        padding-top: 4px;
+                        padding-left: 16px;
+                        li{
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 16px;
+                            padding: 12px 0;
+                            &:last-of-type{
+                                border: none;
+                            }
+                        }
+                    }
+                    &:hover .dropcontent{
+                        display: block;
+                    }
+                    &:hover .dropbtn{
+                        &::after{
+                            transform: rotateX(180deg);
+                            // content: url('../../../utilities/icons/arrowup.svg');
+                        }
+                    }
+                }
             }
             @include _md{
                 box-sizing: border-box;
@@ -37,6 +109,7 @@
         #menu-hamburger{
             display: flex;
             margin-left: auto;
+            cursor: pointer;
             @include _md{
                 display: none;
             }
@@ -46,6 +119,15 @@
                 width: 24px;
                 height: 24px;
                 margin: auto;
+            }
+            &.active{
+                position: absolute;
+                z-index: 100;
+                top: 16px;
+                right: 16px;
+                i{
+                    content: url('../../../utilities/icons/close.svg');
+                }
             }
         }
         .brand{
@@ -64,108 +146,104 @@
             }
         }
         .dropdown{
-            position: relative;
-            .dropbtn{
-                display: flex;
-                &::after{
-                    transition: transform .2s linear;
-                    height: 20px;
-                    content: url('../../../utilities/icons/arrowdown.svg');
-                }
-            }
-            .dropcontent{
-                cursor: pointer;
-                color: v.$dark_blue;
-                display: none;
-                overflow: hidden;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0 16px;
-                position: absolute;
-                // width: 196px;
-                // height: 192px;
-                left: 0;
-                top: 100%;
-                /* Color / white */
-                
-                background: v.$white;
-                border-radius: 8px;
-                li{
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 16px;
-                    padding: 16px 0;
-                    border-bottom: 1px solid v.$light_blue;
-                    &:last-of-type{
-                        border: none;
+            @include _md{
+                position: relative;
+                .dropbtn{
+                    display: flex;
+                    &::after{
+                        transition: transform .2s linear;
+                        height: 20px;
+                        content: url('../../../utilities/icons/arrowdown.svg');
                     }
                 }
-            }
-            &:hover .dropcontent{
-                display: block;
-            }
-            &:hover .dropbtn{
-                &::after{
-                    transform: rotateX(180deg);
-                    // content: url('../../../utilities/icons/arrowup.svg');
+                .dropcontent{
+                    cursor: pointer;
+                    color: v.$dark_blue;
+                    display: none;
+                    overflow: hidden;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 0 16px;
+                    position: absolute;
+                    // width: 196px;
+                    // height: 192px;
+                    left: 0;
+                    top: 100%;
+                    /* Color / white */
+                    
+                    background: v.$white;
+                    border-radius: 8px;
+                    li{
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 16px;
+                        padding: 16px 0;
+                        border-bottom: 1px solid v.$light_blue;
+                        &:last-of-type{
+                            border: none;
+                        }
+                    }
+                }
+                &:hover .dropcontent{
+                    display: block;
+                }
+                &:hover .dropbtn{
+                    &::after{
+                        transform: rotateX(180deg);
+                        // content: url('../../../utilities/icons/arrowup.svg');
+                    }
                 }
             }
         }
         #page_titles{
-            // justify-self: center;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            height: 100%;
-            gap: 16px;
-            &>li{
-                padding: 0 16px;
-            }
-            li{
+            @include _md{
+                // justify-self: center;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 height: 100%;
-                display: flex;                
-                a, div{
-                    cursor: pointer;
-                    margin: auto 0;
+                gap: 16px;
+                &>li{
+                    padding: 0 16px;
+                }
+                li{
+                    height: 100%;
+                    display: flex;                
+                    a, div{
+                        cursor: pointer;
+                        margin: auto 0;
+                    }
                 }
             }
-            
         }
         #language{
-            height: 100%;
-            display: flex;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 16px;
-            // .lang-ru{
-            //     content: url('../../../utilities/icons/ru.png');
-            // }
-            // .lang-en{
-            //     content: url('../../../utilities/icons/en.png');
-            // }
-            // .lang-kz{
-            //     content: url('../../../utilities/icons/kz.png');
-            // }
-            .dropbtn{
-                cursor: pointer;
-                margin: auto 0;
+            @include _md{
+                height: 100%;
                 display: flex;
-                align-items: center;
-                gap: 8px;
-                flex-wrap: nowrap;
-                padding: 8px;
-                &::after{
-                    margin-left: 0;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 16px;
+                .dropbtn{
+                    cursor: pointer;
+                    margin: auto 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    flex-wrap: nowrap;
+                    padding: 8px;
+                    &::after{
+                        margin-left: 0;
+                    }
                 }
-            }
-            li{
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                flex-wrap: nowrap;
-                &.hidden{
-                    display: none;
+                li{
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    flex-wrap: nowrap;
+                    &.hidden{
+                        display: none;
+                    }
                 }
             }
         }
@@ -185,6 +263,23 @@
             .dropbtn{
                 &::after{
                     content: url('../../../utilities/icons/arrowdown-dark.svg')!important;
+                }
+            }
+        }
+        .collapse.active{
+            color: v.$white;
+            .brand{
+                display: flex;
+                .logo{
+                    margin: auto;
+                    content: url('../../../utilities/icons/logo.svg')!important;
+                }
+            }
+            .dropdown{
+                .dropbtn{
+                    &::after{
+                        content: url('../../../utilities/icons/arrowdown.svg')!important;
+                    }
                 }
             }
         }

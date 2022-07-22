@@ -1,5 +1,12 @@
 @import '../utilities/adaptive';
 
+.bold-24-28{
+    margin: 0;
+    padding-bottom: 0;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+}
 .bold-48-56, .heading-bold-48-56{
     margin: 0;
     padding-bottom: 0;
@@ -26,23 +33,22 @@
     margin: 0;
     font-weight: 600;
     font-size: 32px;
-    line-height: 38px;
+    line-height: 48px;
 }
-.semibold-lg-32-48{
-    @include _lg{
-        padding: 0;
-        margin: 0;
-        font-weight: 600;
-        font-size: 32px;
-        line-height: 38px;
-    }
-}
+
 .semibold-24-32, .title-semibold-24-32{
     padding: 0;
     margin: 0;
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
+}
+.semibold-16-24{
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
 }
 .regular-24-32{
     padding: 0;
@@ -80,7 +86,7 @@
     font-size: 20px;
     line-height: 28px;
 }
-.body-regular-16-20{
+.regular-16-20, .body-regular-16-20{
     margin: 0;
     padding: 0;
     font-weight: 400;
@@ -129,13 +135,49 @@
 }
 
 // LG
+.bold-lg-48-56{
+    @include _lg{
+        padding: 0;
+        margin: 0;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
+.bold-lg-40-48{
+    @include _lg{
+        padding: 0;
+        margin: 0;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 48px;
+    }
+}
 .semibold-lg-32-48{
     @include _lg{
         padding: 0;
         margin: 0;
         font-weight: 600;
         font-size: 32px;
-        line-height: 38px;
+        line-height: 48px;
+    }
+}
+.semibold-lg-32-40{
+    @include _lg{
+        padding: 0;
+        margin: 0;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+.semibold-lg-24-32{
+    @include _lg{
+        padding: 0;
+        margin: 0;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
     }
 }
 .regular-lg-22-28{
@@ -144,6 +186,42 @@
         padding: 0;
         font-weight: 400;
         font-size: 22px;
+        line-height: 28px;
+    }
+}
+.regular-lg-24-32{
+    @include _lg{
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+.regular-lg-24-30{
+    @include _lg{
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
+.regular-lg-22-28{
+    @include _lg{
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 28px;
+    }
+}
+.regular-lg-20-28{
+    @include _lg{
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        font-size: 20px;
         line-height: 28px;
     }
 }
