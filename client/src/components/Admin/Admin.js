@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import decode from 'jwt-decode';
 
 import './styles.scss'
+import { Helmet } from "react-helmet-async";
 
 const Admin = () => {
     const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -34,6 +35,9 @@ const Admin = () => {
     }, [profile]);
     return (
         <div id="admin">
+            <Helmet>
+                <meta name="robots" content="noindex" />
+            </Helmet>
             <Header />
             <Menu />
             <div id="content">

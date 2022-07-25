@@ -9,7 +9,7 @@ import './styles.scss';
 
 const Subpage = ({parent}) => {
     const dispatch = useDispatch();
-    const {lang} = useSelector((state)=>state.global);
+    const {lang, link} = useSelector((state)=>state.global);
     const {page, texts} = useSelector((state)=>state.pages);
     const {pagename} = useParams();
 
@@ -20,7 +20,7 @@ const Subpage = ({parent}) => {
             dispatch(getPageByName(pagename));
             dispatch(getTexts(['home_directions_heading', 'home_directions_subheading', 'home_services_heading', 'home_services_subheading']));
         }
-    },[page])
+    },[page, pagename, dispatch])
 
     const setSlide = (key) => {
         if(page && page.images && page.images.length > 1){
@@ -35,7 +35,7 @@ const Subpage = ({parent}) => {
                 <div className="container">
                     <div className={`icon-container mb-4 ${!page && 'skeleton'}`}>
                         {(page && page.images) && (
-                            <img src={`http://89.219.32.45:5000/images/${page.images[0].src}`} />
+                            <img src={`${link}images/${page.images[0].src}`} alt={page.title[lang]} />
                         )}
                     </div>
                     <div className="d-flex flex-column gap-1 mb-6">
@@ -58,7 +58,7 @@ const Subpage = ({parent}) => {
                             <>
                                 {page.images.slice(1).map((image, key) => (
                                     <div key={key} className={`carousel-slide ${key === currentSlide ? 'active' : ''}`} > 
-                                        <img src={`http://89.219.32.45:5000/images/${image.src}`} />
+                                        <img src={`${link}images/${image.src}`}  alt={page.title[lang]} />
                                     </div>
                                 ))}
                                 <span id="carousel-left" onClick={(e)=>{e.preventDefault(); setSlide(currentSlide-1)}}/>
@@ -94,7 +94,7 @@ const Subpage = ({parent}) => {
                                 <div className="icon-card color-lightblue">
                                     <div className="d-flex">
                                         <div className="icon-cardimage">
-                                            <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
+                                            <img src={`${link}images/${sub.image}`}  alt={sub.title[lang]} />
                                         </div>
                                     </div>
                                     <div className="icon-cardtitle color-darkblue">

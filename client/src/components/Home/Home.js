@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getPageByName } from "../../actions/page";
+import { useLocation } from 'react-router-dom';
+
 import ConsultationForm from "../subcomponents/Consultation/ConsultationForm";
 
 import './styles.scss';
+import { Helmet } from "react-helmet-async";
 
 const words = {
     consult: {ru: 'Проконсультироваться', en: 'Consult', kz: 'Кеңесу'}
@@ -11,15 +14,43 @@ const words = {
 
 const Home = () => {
     const { page } = useSelector((state) => state.pages);
-    const { lang } = useSelector((state) => state.global);
+    const { lang, link } = useSelector((state) => state.global);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getPageByName('home'));
     }, [dispatch]);
 
+    const directionsRef = useRef(null);
+    const servicesRef = useRef(null);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if(location.hash){
+            switch(location.hash){
+                case '#directions':
+                    scroll(directionsRef);
+                    break;
+                case '#services':
+                    scroll(servicesRef);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [location]);
+
+    const scroll = (element) => {
+        element.current.scrollIntoView();
+    }
 
     return (
         <div id="home">
+            <Helmet>
+                <title>Rag Mirsot</title>
+                <meta name="description" content={page ? page.home_subheading[lang] : ''} />
+                <link rel="canonical" href="/" />
+            </Helmet>
             <div className="block" id="home-heading">
                 <div className="container">
                     <div className="slideshow background pos-abs w-100 h-100 ">
@@ -27,7 +58,7 @@ const Home = () => {
                             {page && page.images && page.images.map((img, key)=>(
                                 <div className="slide" key={key}>
                                     <div className="image-container">
-                                        <img src={`http://89.219.32.45:5000/images/${img.src}`} />
+                                        <img src={`${link}images/${img.src}`} alt="" loading="eager" />
                                     </div>
                                 </div>
                             ))}
@@ -53,7 +84,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="block" id="home-directions">
+            <div className="block" id="home-directions" ref={directionsRef}>
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
                         <div className='semibold-24-32 semibold-lg-32-48 color-white pb-8 w-100'>
@@ -68,17 +99,19 @@ const Home = () => {
                             )}
                         </div>
                     </div>
-                    <div className="row-2 row-lg-4">
+                    <div className="row-2 row-lg-4" >
                         {page ? page.directions.map((sub)=>(
                             <div className="col" key={sub._id}>
                                 <div className="icon-card directions color-lightblue">
                                     <div className="d-flex">
                                         <div className="icon-cardimage">
-                                            <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
+                                            <img src={`${link}images/${sub.image}`} alt={sub.title[lang]} />
                                         </div>
                                     </div>
                                     <div className="icon-cardtitle color-lightblue">
-                                        {sub.title[lang]}
+                                        <a href={`directions/${sub.name}`}>
+                                            {sub.title[lang]}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +162,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="block" id="home-services">
+            <div className="block" id="home-services" ref={servicesRef}>
                 <div className="container">
                     <div className="d-flex flex-column gap-1 mb-5">
                         <div className='semibold-24-32 semibold-lg-32-48 color-black pb-8 w-100'>
@@ -150,11 +183,13 @@ const Home = () => {
                                 <div className="icon-card services color-lightblue">
                                     <div className="d-flex">
                                         <div className="icon-cardimage">
-                                            <img src={`http://89.219.32.45:5000/images/${sub.image}`} />
+                                            <img src={`${link}images/${sub.image}`} alt={sub.title[lang]} />
                                         </div>
                                     </div>
                                     <div className="icon-cardtitle color-darkblue">
-                                        {sub.title[lang]}
+                                        <a href={`services/${sub.name}`}>
+                                            {sub.title[lang]}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

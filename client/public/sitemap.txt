@@ -1,0 +1,2 @@
+https://<URL>/
+https://<URL>/about

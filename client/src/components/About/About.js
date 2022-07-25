@@ -10,15 +10,11 @@ const About = () => {
     const dispatch = useDispatch();
     const {page} = useSelector((state) => state.pages);
     // const page = null;
-    const {lang} = useSelector((state) => state.global);
+    const {lang, link} = useSelector((state) => state.global);
 
     useEffect(()=>{
         dispatch(getPageByName('about'));
     }, [dispatch])
-
-    useEffect(()=>{
-        console.log(page);
-    }, [page])
 
     const calcMargin = (e) =>{
         e.preventDefault();
@@ -26,7 +22,6 @@ const About = () => {
         const margin = window.getComputedStyle(containerEl).marginLeft;
         const lastcard = document.getElementById('lastcard');
         lastcard.style.marginRight = margin;
-        // console.log(cards.s)
     }
 
     return (
@@ -114,7 +109,7 @@ const About = () => {
                             <div className='staff-image'>
                                 <div className='bg'></div>
                                 <div className='profile-image'>
-                                    <img src={page && `http://89.219.32.45:5000/images/${page.images[0].src}`} className={`${!page && 'skeleton'}`} />
+                                    <img src={page && `${link}images/${page.images[0].src}`} className={`${!page && 'skeleton'}`} alt={page && page.about_staff_ceo_name[lang]} />
                                 </div>
                             </div>
                             <div className='staff-text d-flex flex-column gap-2'>
@@ -153,7 +148,7 @@ const About = () => {
                             <div className='staff-image'>
                                 <div className='bg'></div>
                                 <div className='profile-image'>
-                                    <img src={page && `http://89.219.32.45:5000/images/${page.images[1].src}`} className={`${!page && 'skeleton'}`} />
+                                    <img src={page && `${link}images/${page.images[1].src}`} className={`${!page && 'skeleton'}`} alt={page && page.about_staff_cto_name[lang]} />
                                 </div>
                             </div>
                             <div className='staff-text d-flex flex-column gap-2'>
@@ -198,7 +193,7 @@ const About = () => {
                     <div className='images mt-6'>
                         {page && page.images.map((image,key)=> key>1 && (
                             <div className='image-container' key={key}>
-                                <img src={`http://89.219.32.45:5000/images/${image.src}`} />
+                                <img src={`${link}images/${image.src}`} alt="" />
                             </div>
                         ))}
                     </div>

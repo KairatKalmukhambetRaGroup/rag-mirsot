@@ -1,21 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import './styles.scss';
 
 const pages = {
-    home: {ru: 'Главная страница', en: 'Main page', kz: 'Басты бет'},
-    directions: {ru: 'Направления', en: 'Directions', kz: 'Бағыттар'},
-    services: {ru: 'Услуги', en: 'Services', kz: 'Қызметтер'},
-    about: {ru: 'О нас', en: 'About us', kz: 'Біз туралы'}
+    home: {ru: 'Главная страница', en: 'Main page', kz: 'Басты бет', link: '/'},
+    directions: {ru: 'Направления', en: 'Directions', kz: 'Бағыттар', link: '/#directions'},
+    services: {ru: 'Услуги', en: 'Services', kz: 'Қызметтер', link: '/#services'},
+    about: {ru: 'О нас', en: 'About us', kz: 'Біз туралы', link: '/about'}
 }
 
 const Breadcrumb = ({color='white', page=null, subpage=null}) => {
     const {lang} = useSelector((state)=>state.global);
-
-    useEffect(()=>{
-        console.log(subpage)
-    },[subpage])
 
     return (
         <div id="breadcrumb" className={`block theme-${color}`}>
@@ -24,13 +20,17 @@ const Breadcrumb = ({color='white', page=null, subpage=null}) => {
                 <div className="container">
                     <div className="breadcrumbs-content">
                         <div className="breadcrumb regular-16-16">
-                            {pages.home[lang]}
+                            <a href="/">
+                                {pages.home[lang]}
+                            </a>
                         </div>
                         {page && (
                             <>
                                 <span>&nbsp;/&nbsp;</span>
                                 <div className="breadcrumb regular-16-16">
-                                   {pages[page][lang]}
+                                    <a href={pages[page].link}>
+                                       {pages[page][lang]}
+                                    </a>
                                 </div>
                             </>
                         )}

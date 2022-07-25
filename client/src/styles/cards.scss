@@ -22,7 +22,11 @@
     .icon-cardtitle{
         font-weight: 500;
         font-size: 16px;
-        line-height: 34px;        
+        line-height: 34px;   
+        a{
+            text-decoration: none;
+            color: inherit;
+        }     
         @include _lg{
             font-weight: 500;
             font-size: 24px;

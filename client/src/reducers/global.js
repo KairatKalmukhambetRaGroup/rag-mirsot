@@ -1,6 +1,7 @@
-import { ADD_VISITOR, FETCH_VISITORS, LANG, REQUEST_CONSULTATION } from "../constants/actionTypes";
+import { ADD_VISITOR, LANG, REQUEST_CONSULTATION } from "../constants/actionTypes";
 
-const globalReducers = (state = {lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'ru', consultation_status: null}, action) => {
+// http://89.219.32.45:5000/
+const globalReducers = (state = {link: 'http://89.219.32.45:5000/',lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'ru', consultation_status: null}, action) => {
     switch (action.type) {
         case LANG:
             localStorage.setItem('lang', action.lang);

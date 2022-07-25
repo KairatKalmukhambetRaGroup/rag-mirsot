@@ -40,12 +40,12 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li> 
-                                <a href='/#home-directions'>
+                                <a href='/#directions'>
                                     {pages.directions[lang]}
                                 </a>
                             </li>
                             <li> 
-                                <a href='/#home-services'>
+                                <a href='/#services'>
                                     {pages.services[lang]}
                                 </a>
                             </li>
@@ -71,7 +71,7 @@ const Footer = () => {
                             </div>
                             <div className="contacts">
                                 <p className="regular-16-28">По всем вопросам:</p>
-                                <a className="regular-22-28" href="tel:+971561938489">+971 56 193 8489</a>
+                                <a className="regular-22-28" href="tel:+971561938489">+971 56 193 8480</a>
                                 <a className="regular-18-28" href="mailto:info@ragmirsot.org">info@ragmirsot.org</a>
                             </div>
                         </div>
